@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { pages } from '../data/pages.js';
+
+export function getStaticPaths() {
+  return Object.entries(pages).map(([slug, data]) => ({
+    params: { slug },
+    props: { data },
+  }));
+}
+
+const { data } = Astro.props;
+---
+
+<Base title={data.title} description={data.description}>
+  <article class="section">
+    <div class="container">
+      <div class="page-head">
+        <h1>{data.h1}</h1>
+        {data.lead && <p class="lead page-lead">{data.lead}</p>}
+        {data.todo && <span class="badge todo-badge">черновик — обогащается</span>}
+      </div>
+
+      <div class="prose">
+        {data.blocks?.map((block) => {
+          if (block.type === 'h2') return <h2>{block.text}</h2>;
+          if (block.type === 'h3') return <h3>{block.text}</h3>;
+          if (block.type === 'ul') return <ul>{block.items.map((i) => <li>{i}</li>)}</ul>;
+          return <p>{block.text}</p>;
+        })}
+      </div>
+
+      <div class="page-cta card card-featured">
+        <h3>Обсудить заказ</h3>
+        <p>Пришлите чертёж или опишите задачу — рассчитаем и подскажем по материалу.</p>
+        <div class="page-cta-actions">
+          <a href="https://t.me/frezorezwood" class="btn btn-primary" target="_blank" rel="noopener">Написать в Telegram</a>
+          <a href="tel:+79255560166" class="btn btn-secondary">+7 925 556-01-66</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .page-head { margin-bottom: var(--space-12); }
+  .page-lead { margin-top: var(--space-4); max-width: 70ch; }
+  .todo-badge { margin-top: var(--space-4); background: var(--accent-subtle); color: var(--warning); }
+  .page-cta { margin-top: var(--space-16); max-width: 720px; }
+  .page-cta h3 { margin-bottom: var(--space-2); }
+  .page-cta-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+</style>

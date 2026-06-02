@@ -1,0 +1,148 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site.js';
+const { contacts } = site;
+---
+
+<Base
+  title="Контакты — FREZOREZ.RU, Москва, ул. Буракова 6с2"
+  description="Контакты FREZOREZ: +7 925 556-01-66, info@frezorez.ru, Москва ул. Буракова 6 стр. 2. Telegram, WhatsApp, ВКонтакте."
+>
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Контакты</div>
+      <h1 class="contacts-h1">Как с нами <span class="accent-text">связаться</span></h1>
+
+      <div class="contacts-layout">
+        <!-- Левая колонка: контакты -->
+        <div class="contacts-col">
+
+          <!-- Телефон и email -->
+          <div class="contact-block">
+            <div class="eyebrow block-label">Звонок и сообщение</div>
+            <a href={contacts.phoneHref} class="phone-link">{contacts.phone}</a>
+            <a href={contacts.emailHref} class="email-link">{contacts.email}</a>
+          </div>
+
+          <!-- Мессенджеры -->
+          <div class="contact-block">
+            <div class="eyebrow block-label">Мессенджеры и соцсети</div>
+            <div class="socials-list">
+              {contacts.socials.map((s) => (
+                <a href={s.href} class="social-item" target="_blank" rel="noopener">
+                  <span class="social-label">{s.label}</span>
+                  <span class="social-handle">{s.handle}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <!-- Адрес -->
+          <div class="contact-block">
+            <div class="eyebrow block-label">Адрес производства</div>
+            <p class="address-line">{contacts.address}</p>
+            <p class="metro-line">
+              Ближайшее метро:&nbsp;
+              {contacts.metro.join(' · ')}
+            </p>
+          </div>
+
+          <!-- Режим работы -->
+          <div class="contact-block">
+            <div class="eyebrow block-label">Работаем</div>
+            <p class="hours">Пн–Пт, 9:00–18:00. В выходные — по договорённости.</p>
+          </div>
+
+          <!-- CTA -->
+          <div class="cta-row">
+            <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Написать в Telegram</a>
+            <a href={contacts.phoneHref} class="btn btn-secondary btn-lg">{contacts.phone}</a>
+          </div>
+
+        </div>
+
+        <!-- Правая колонка: карта -->
+        <div class="map-col">
+          <div class="map-wrap">
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?text=Москва%2C+улица+Буракова%2C+6+строение+2&z=16&lang=ru_RU"
+              width="100%"
+              height="100%"
+              frameborder="0"
+              allowfullscreen
+              title="FREZOREZ на карте"
+              loading="lazy"
+            ></iframe>
+          </div>
+          <p class="map-caption">{contacts.address}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contacts-h1 { margin-top: var(--space-3); margin-bottom: var(--space-12); max-width: 16ch; }
+
+  .contacts-layout {
+    display: grid;
+    gap: var(--space-12);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .contacts-layout { grid-template-columns: 1fr 1fr; align-items: start; gap: var(--space-16); }
+  }
+
+  /* ---- Contacts col ---- */
+  .contacts-col { display: flex; flex-direction: column; gap: var(--space-10); }
+
+  .contact-block { display: flex; flex-direction: column; gap: var(--space-2); }
+  .block-label { margin-bottom: var(--space-1); }
+
+  .phone-link {
+    font-size: 28px; font-weight: 700; color: var(--text-primary);
+    letter-spacing: -0.02em;
+    transition: color var(--duration-fast);
+  }
+  .phone-link:hover { color: var(--accent-primary); }
+
+  .email-link {
+    font-size: 16px; color: var(--text-secondary);
+    transition: color var(--duration-fast);
+  }
+  .email-link:hover { color: var(--accent-primary); }
+
+  .socials-list { display: flex; flex-direction: column; gap: var(--space-2); }
+  .social-item {
+    display: flex; align-items: baseline; gap: var(--space-3);
+    font-size: 14px;
+    transition: color var(--duration-fast);
+  }
+  .social-item:hover { color: var(--accent-primary); }
+  .social-label { color: var(--text-tertiary); min-width: 80px; }
+  .social-handle { color: var(--text-secondary); }
+
+  .address-line {
+    font-size: 16px; font-weight: 500; color: var(--text-primary);
+  }
+  .metro-line {
+    font-size: 14px; color: var(--text-tertiary);
+    line-height: 20px;
+  }
+
+  .hours { font-size: 16px; color: var(--text-secondary); }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: var(--space-3); padding-top: var(--space-2); }
+
+  /* ---- Map col ---- */
+  .map-col { display: flex; flex-direction: column; gap: var(--space-3); }
+  .map-wrap {
+    width: 100%; height: 400px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-secondary);
+  }
+  @media (min-width: 768px) { .map-wrap { height: 480px; } }
+  .map-caption { font-size: 13px; color: var(--text-tertiary); }
+</style>

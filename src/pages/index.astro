@@ -1,0 +1,395 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site.js';
+const { contacts, materials } = site;
+
+// ─── Логотипы клиентов ────────────────────────────────────────────────────────
+const partnerLogos = [
+  { name: 'Норникель',    src: '/content/partners/logo-ss-ru.jpg' },
+  { name: 'АндерСон',     src: '/content/partners/anderson.jpg' },
+  { name: 'Азбука Вкуса', src: '/content/partners/azbyka.png' },
+  { name: 'ВКонтакте',    src: '/content/partners/vk.jpg' },
+  { name: 'ВкусВилл',     src: '/content/partners/vkus.jpg' },
+  { name: 'Swarovski',    src: '/content/partners/Swarovski-Logo.jpg' },
+  { name: 'Росгвардия',   src: '/content/partners/rosgvard-logo-1.png' },
+  { name: 'ОНФ',          src: '/content/partners/Onf-logo.svg.png' },
+  { name: 'Max Mara',     src: '/content/partners/Max-Mara-logo.jpg' },
+];
+
+// ─── Направления (хаб → /frezerovka-chpy) ────────────────────────────────────
+const directions = [
+  {
+    eyebrow: 'Листовые неметаллы',
+    title: 'Фрезеровка ЧПУ',
+    text: 'Фанера, дерево, МДФ, ЛДСП, акрил, ПВХ, АКП. Рабочее поле 2.2×4.2 м, точность 0.025 мм.',
+    href: '/frezerovka-chpy',
+    img: '/images/chpy/1.jpg',
+  },
+  {
+    eyebrow: 'CO2 · неметаллы',
+    title: 'Лазерная резка',
+    text: 'Резка и гравировка фанеры, оргстекла, кожи, резины. Поле 1300×900 мм, стол до 600 мм.',
+    href: '/lazernaja-rezka',
+    img: '/images/kompozit/2.jpg',
+  },
+  {
+    eyebrow: 'Рельеф · декор',
+    title: '3D-фрезеровка',
+    text: 'Панно, резной декор для классических интерьеров, эмблемы. Точность до 0.25 мм.',
+    href: '/3d-frezerovka',
+    img: '/images/3d/1.jpg',
+  },
+];
+
+// ─── Примеры работ (факты из CONTENT.md, без выдуманных метрик) ───────────────
+const cases = [
+  {
+    eyebrow: 'Дерево · Индивидуальный заказ',
+    title: 'Резной декор по мотивам старинной мебели',
+    text: 'Скопировали элемент декора антикварного шкафа: сняли размеры с оригинала, построили 3D-модель в Rhino 3D, изготовили деталь в точности. Материал — ясень, отделка шёлковым маслом с тонировкой.',
+    tags: ['Дерево', '3D-фрезеровка', 'Реставрация'],
+    img: '/images/3d/2.jpg',
+    href: '/3d-frezerovka',
+  },
+  {
+    eyebrow: 'Фанера · Серийный заказ',
+    title: 'Аксессуары для баров и ресторанов',
+    text: 'Доски для подачи, обложки меню, коробочки для чеков, таблички RESERVED — серийно, с лазерной гравировкой логотипа. Покрытие только натуральными маслами и пчелиным воском.',
+    tags: ['Фанера', 'ЧПУ + Лазер', 'HoReCa'],
+    img: '/images/horeca/2.jpg',
+    href: '/izgotovlenie-produkcii-iz-horeca',
+  },
+];
+
+// ─── Процесс работы ───────────────────────────────────────────────────────────
+const steps = [
+  {
+    num: '01',
+    title: 'Присылаете файл или идею',
+    text: 'CDR, PDF, DWG, DXF, STL — или просто фото и описание задачи.',
+  },
+  {
+    num: '02',
+    title: 'Рассчитываем стоимость',
+    text: 'Подбираем материал и технологию, считаем смету. Консультируем по конструктиву.',
+  },
+  {
+    num: '03',
+    title: 'Изготавливаем в Москве',
+    text: 'Фрезеруем, режем лазером, красим, собираем — всё на своём производстве.',
+  },
+  {
+    num: '04',
+    title: 'Доставляем или самовывоз',
+    text: 'GettDelivery, Dostavista, Грузовичкоф или самовывоз с ул. Буракова, 6.',
+  },
+];
+---
+
+<Base
+  title="FREZOREZ.RU — фрезеровка на ЧПУ в Москве"
+  description="Столярное производство в Москве: ЧПУ-фрезеровка, лазерная резка, 3D. Работаем по чертежам с 2016 года."
+>
+
+  <!-- ① HERO ─────────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <span class="badge badge-accent badge-mono hero-badge">Столярное производство · Москва · с 2016</span>
+        <h1 class="hero-h1">Воплощаем идеи<br><span class="accent-text">в дереве и металле</span></h1>
+        <p class="lead hero-lead">
+          ЧПУ-фрезеровка, лазерная резка, 3D и сборка по вашим чертежам.
+          Фрезеруем любые материалы, кроме железа — железо режем лазером.
+        </p>
+        <div class="hero-actions">
+          <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Написать в Telegram</a>
+          <a href={contacts.phoneHref} class="btn btn-ghost btn-lg">{contacts.phone}</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="/images/frezorez.jpg" alt="Производство FREZOREZ, Москва" loading="eager" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ② КЛИЕНТЫ ──────────────────────────────────────────────────────────── -->
+  <section class="section clients-section">
+    <div class="container">
+      <div class="clients-head">
+        <span class="eyebrow">Нам доверяют</span>
+        <span class="clients-note muted">Норникель, АндерСон, Азбука Вкуса, Swarovski и другие</span>
+      </div>
+      <div class="logos-row">
+        {partnerLogos.map((p) => (
+          <div class="logo-item" title={p.name}>
+            <img src={p.src} alt={p.name} loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ НАПРАВЛЕНИЯ ──────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Что делаем</div>
+        <h2>Три направления производства</h2>
+      </div>
+      <div class="grid grid-3">
+        {directions.map((d) => (
+          <a href={d.href} class="card card-link dir-card">
+            <div class="dir-photo">
+              <img src={d.img} alt={d.title} loading="lazy" />
+            </div>
+            <div class="dir-body">
+              <div class="eyebrow">{d.eyebrow}</div>
+              <h3 class="dir-title">{d.title}</h3>
+              <p>{d.text}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="hub-row">
+        <a href="/frezerovka-chpy" class="hub-link">
+          Все материалы и подвиды фрезеровки <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ ПРИМЕРЫ РАБОТ ────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Примеры работ</div>
+        <h2>Примеры выполненных работ</h2>
+      </div>
+      <div class="cases">
+        {cases.map((c, i) => (
+          <div class={`case${i % 2 === 1 ? ' case-flip' : ''}`}>
+            <div class="case-photo">
+              <img src={c.img} alt={c.title} loading="lazy" />
+            </div>
+            <div class="case-body">
+              <div class="eyebrow">{c.eyebrow}</div>
+              <h3 class="case-title">{c.title}</h3>
+              <p class="case-text">{c.text}</p>
+              <div class="case-tags">
+                {c.tags.map((t) => <span class="badge">{t}</span>)}
+              </div>
+              <a href={c.href} class="case-link">
+                Подробнее <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ ПРОЦЕСС РАБОТЫ ───────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Как работаем</div>
+        <h2>От задачи до готового изделия</h2>
+      </div>
+      <div class="steps">
+        {steps.map((s) => (
+          <div class="step">
+            <div class="step-num">{s.num}</div>
+            <h3 class="step-title">{s.title}</h3>
+            <p class="step-text">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ МАТЕРИАЛЫ ────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Материалы</div>
+        <h2>С чем работаем</h2>
+      </div>
+      <div class="chips">
+        {materials.map((m) => <span class="badge">{m}</span>)}
+      </div>
+      <p class="muted materials-note">Самые ходовые позиции — в запасе; чего нет, закажем у партнёров.</p>
+    </div>
+  </section>
+
+  <!-- ⑦ CTA ──────────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="card card-featured cta-block">
+        <h2>Есть чертёж или идея?</h2>
+        <p class="lead">Пришлите — рассчитаем стоимость и сроки, подскажем по материалу и технологии.</p>
+        <div class="cta-actions">
+          <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Telegram</a>
+          <a href={contacts.phoneHref} class="btn btn-secondary btn-lg">{contacts.phone}</a>
+          <a href={contacts.emailHref} class="btn btn-ghost btn-lg">{contacts.email}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* ─── HERO ─────────────────────────────────────────────────────────────── */
+  .hero { padding-block: var(--space-16) var(--space-12); }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr 420px; gap: var(--space-16); }
+  }
+
+  .hero-badge { margin-bottom: var(--space-6); }
+  .hero-h1 { max-width: 16ch; }
+  .hero-lead { margin-top: var(--space-6); max-width: 56ch; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-8); }
+
+  .hero-visual { display: none; }
+  @media (min-width: 900px) { .hero-visual { display: block; } }
+  .hero-visual img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* ─── КЛИЕНТЫ ──────────────────────────────────────────────────────────── */
+  .clients-section { padding-block: var(--space-12); }
+  .clients-head {
+    display: flex; align-items: baseline; flex-wrap: wrap;
+    gap: var(--space-3) var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+  .clients-note { font-size: 13px; }
+
+  .logos-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-10) var(--space-4);
+    align-items: center;
+    justify-items: center;
+  }
+  @media (min-width: 768px) {
+    .logos-row {
+      display: flex; flex-wrap: wrap;
+      justify-content: center; align-items: center;
+      gap: var(--space-10) var(--space-6);
+    }
+  }
+  .logo-item { display: flex; align-items: center; justify-content: center; }
+  .logo-item img {
+    height: 88px; max-width: 160px; width: auto;
+    object-fit: contain;
+    filter: grayscale(1) invert(1) opacity(0.45);
+    transition: filter var(--duration-base) var(--ease-default);
+  }
+  .logo-item:hover img { filter: grayscale(1) invert(1) opacity(0.72); }
+
+  /* ─── НАПРАВЛЕНИЯ ──────────────────────────────────────────────────────── */
+  .dir-card { padding: 0; overflow: hidden; }
+
+  .dir-photo {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .dir-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+  .dir-card:hover .dir-photo img { transform: scale(1.05); }
+
+  .dir-body { padding: var(--space-6); }
+  @media (min-width: 768px) { .dir-body { padding: var(--space-6); } }
+
+  .dir-title { margin-block: var(--space-3) var(--space-2); }
+
+  .hub-row { margin-top: var(--space-8); }
+  .hub-link {
+    font-size: 14px; font-weight: 500; color: var(--text-tertiary);
+    transition: color var(--duration-fast);
+  }
+  .hub-link:hover { color: var(--accent-primary); }
+
+  /* ─── ПРИМЕРЫ РАБОТ ────────────────────────────────────────────────────── */
+  .cases { display: flex; flex-direction: column; gap: var(--space-16); }
+
+  .case {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+  @media (min-width: 768px) {
+    .case         { grid-template-columns: 1fr 1fr; gap: var(--space-12); }
+    .case-flip .case-photo { order: 2; }
+    .case-flip .case-body  { order: 1; }
+  }
+
+  .case-photo img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .case-body { display: flex; flex-direction: column; gap: var(--space-4); }
+  .case-body .eyebrow { margin-bottom: 0; }
+  .case-title { font-size: 24px; line-height: 32px; margin: 0; }
+  .case-text { color: var(--text-secondary); }
+  .case-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .case-link {
+    display: inline-flex; align-items: center; gap: var(--space-1);
+    font-size: 14px; font-weight: 500; color: var(--text-tertiary);
+    margin-top: var(--space-2);
+    transition: color var(--duration-fast);
+  }
+  .case-link:hover { color: var(--accent-primary); }
+
+  /* ─── ПРОЦЕСС РАБОТЫ ───────────────────────────────────────────────────── */
+  .steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  @media (min-width: 640px)  { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+
+  .step {
+    padding: var(--space-6);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+  }
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 40px; font-weight: 800; line-height: 1;
+    color: var(--accent-primary);
+    margin-bottom: var(--space-4);
+  }
+  .step-title { font-size: 17px; font-weight: 600; margin-bottom: var(--space-2); }
+  .step-text  { font-size: 14px; color: var(--text-secondary); line-height: 22px; }
+
+  /* ─── МАТЕРИАЛЫ ────────────────────────────────────────────────────────── */
+  .materials-note { margin-top: var(--space-4); font-size: 14px; }
+
+  /* ─── CTA ──────────────────────────────────────────────────────────────── */
+  .cta-block h2 { margin-bottom: var(--space-3); }
+  .cta-block .lead { margin-top: var(--space-2); max-width: 60ch; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+</style>

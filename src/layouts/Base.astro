@@ -1,0 +1,71 @@
+---
+import { site } from '../data/site.js';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const {
+  title,
+  description = 'Столярное производство в Москве: ЧПУ-фрезеровка, лазерная резка, 3D. Работаем по чертежам с 2016 года.',
+  ogImage = '/og-default.jpg',
+} = Astro.props;
+
+// Нормализуем путь: убираем .html и завершающий слэш, чтобы canonical
+// совпадал со старым проиндексированным URL (build.format:'file').
+let cleanPath = Astro.url.pathname.replace(/index\.html$/, '').replace(/\.html$/, '');
+if (cleanPath.length > 1) cleanPath = cleanPath.replace(/\/$/, '');
+const canonical = new URL(cleanPath || '/', site.url).href;
+const ogImageUrl = new URL(ogImage, site.url).href;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Яндекс-верификация (Вебмастер) -->
+    <meta name="yandex-verification" content={site.yandexVerification} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <!-- Шрифты: Unbounded (H1/H2) + Manrope (body) + JetBrains Mono. Кириллица подключена. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript" is:inline set:html={`
+      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+      ym(${site.metrikaId}, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+    `}></script>
+    <noscript><div><img src={`https://mc.yandex.ru/watch/${site.metrikaId}`} style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  </head>
+
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

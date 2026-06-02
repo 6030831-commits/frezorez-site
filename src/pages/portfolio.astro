@@ -1,0 +1,370 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site.js';
+import fs   from 'node:fs';
+import path from 'node:path';
+const { contacts } = site;
+
+// ─── Build-time scan ─────────────────────────────────────────────────────────
+const publicDir = path.join(process.cwd(), 'public');
+const imgRe     = /\.(jpe?g|png|webp)$/i;
+const thumbRe   = /_thumb\./i;
+
+function scanFlat(relDir, cat, alt) {
+  const abs = path.join(publicDir, relDir);
+  if (!fs.existsSync(abs)) return [];
+  return fs.readdirSync(abs)
+    .filter(f => imgRe.test(f) && !thumbRe.test(f))
+    .sort()
+    .map(f => ({ src: `/${relDir}/${encodeURIComponent(f)}`, alt, cat }));
+}
+
+function scanDeep(relDir, cat, alt) {
+  const abs = path.join(publicDir, relDir);
+  if (!fs.existsSync(abs)) return [];
+  return fs.readdirSync(abs, { withFileTypes: true }).flatMap(entry => {
+    const rel = `${relDir}/${entry.name}`;
+    if (entry.isDirectory()) return scanDeep(rel, cat, alt);
+    if (imgRe.test(entry.name) && !thumbRe.test(entry.name))
+      return [{ src: `/${relDir}/${encodeURIComponent(entry.name)}`, alt, cat }];
+    return [];
+  });
+}
+
+const photos = [
+  ...scanFlat('images/chpy',           'cnc',       'Фрезеровка ЧПУ'),
+  ...scanFlat('images/fanera',         'cnc',       'Фрезеровка фанеры'),
+  ...scanFlat('images/derevo',         'cnc',       'Фрезеровка дерева'),
+  ...scanFlat('images/kompozit',       'cnc',       'Фрезеровка композита'),
+  ...scanFlat('images/pvh',            'cnc',       'Фрезеровка ПВХ'),
+  ...scanFlat('images/mebel',          'cnc',       'Мебель из фанеры'),
+  ...scanFlat('images/3d',             '3d',        '3D фрезеровка'),
+  ...scanFlat('images/horeca',         'horeca',    'Продукция HoReCa'),
+  ...scanFlat('images/material_photo', 'materials', 'Материалы и заготовки'),
+  ...(fs.existsSync(path.join(publicDir, 'images/frezorez.jpg'))
+      ? [{ src: '/images/frezorez.jpg', alt: 'Производство FREZOREZ', cat: 'materials' }]
+      : []),
+  ...scanDeep('uploads',               'uploads',   'Работа производства FREZOREZ'),
+];
+
+// Count per category for badge labels
+const count = photos.reduce((acc, p) => { acc[p.cat] = (acc[p.cat] || 0) + 1; return acc; }, {});
+
+const filters = [
+  { id: 'all',       label: `Все работы — ${photos.length}` },
+  { id: 'cnc',       label: `Фрезеровка — ${count.cnc ?? 0}` },
+  { id: '3d',        label: `3D — ${count['3d'] ?? 0}` },
+  { id: 'horeca',    label: `HoReCa — ${count.horeca ?? 0}` },
+  { id: 'materials', label: `Материалы — ${count.materials ?? 0}` },
+  { id: 'uploads',   label: `Портфолио — ${count.uploads ?? 0}` },
+];
+---
+
+<Base
+  title="Портфолио — FREZOREZ.RU, примеры работ производства"
+  description={`Портфолио производства FREZOREZ: ${photos.length} фото — ЧПУ-фрезеровка, 3D, HoReCa, мебель, композит. Реальные работы.`}
+>
+  <!-- HERO -->
+  <section class="section pg-hero">
+    <div class="container">
+      <span class="badge badge-accent badge-mono">Портфолио</span>
+      <h1 class="pg-h1">Наши <span class="accent-text">работы</span></h1>
+      <p class="lead pg-lead">
+        {photos.length} фото из цехов производства: фрезеровка, 3D, HoReCa, мебель из фанеры, лазерная резка.
+      </p>
+    </div>
+  </section>
+
+  <!-- ФИЛЬТРЫ -->
+  <div class="filters-bar">
+    <div class="container">
+      <div class="filters" role="tablist" aria-label="Фильтр категорий">
+        {filters.map((f, i) => (
+          <button
+            class={`filter-btn${i === 0 ? ' active' : ''}`}
+            data-filter={f.id}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+          >{f.label}</button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- СЕТКА -->
+  <section class="section pg-gallery">
+    <div class="container">
+      <div class="photo-grid" id="photo-grid">
+        {photos.map((p, i) => (
+          <button
+            class="photo-card"
+            data-src={p.src}
+            data-alt={p.alt}
+            data-cat={p.cat}
+            data-idx={i}
+            aria-label={p.alt}
+          >
+            <img src={p.src} alt={p.alt} loading="lazy" decoding="async" />
+          </button>
+        ))}
+      </div>
+      <p class="empty-note" id="empty-note" hidden>Нет фото в этой категории.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="card card-featured cta-block">
+        <h2>Хотите такое же?</h2>
+        <p class="lead">Пришлите чертёж или опишите задачу — рассчитаем и подскажем.</p>
+        <div class="cta-row">
+          <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Telegram</a>
+          <a href={contacts.phoneHref} class="btn btn-secondary btn-lg">{contacts.phone}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <dialog id="lightbox" aria-label="Просмотр фото">
+    <div class="lb-wrap">
+      <button class="lb-btn lb-close" id="lb-close" aria-label="Закрыть">&times;</button>
+      <button class="lb-btn lb-nav" id="lb-prev" aria-label="Предыдущее">&#8592;</button>
+      <div class="lb-img-wrap">
+        <img id="lb-img" src="" alt="" />
+      </div>
+      <button class="lb-btn lb-nav" id="lb-next" aria-label="Следующее">&#8594;</button>
+      <p id="lb-cap" class="lb-cap"></p>
+    </div>
+  </dialog>
+</Base>
+
+<script>
+  const dialog   = document.getElementById('lightbox') as HTMLDialogElement;
+  const lbImg    = document.getElementById('lb-img')   as HTMLImageElement;
+  const lbCap    = document.getElementById('lb-cap')   as HTMLParagraphElement;
+  const lbClose  = document.getElementById('lb-close') as HTMLButtonElement;
+  const lbPrev   = document.getElementById('lb-prev')  as HTMLButtonElement;
+  const lbNext   = document.getElementById('lb-next')  as HTMLButtonElement;
+  const emptyNote = document.getElementById('empty-note') as HTMLParagraphElement;
+
+  let currentIdx = 0;
+
+  function visible(): HTMLButtonElement[] {
+    return Array.from(
+      document.querySelectorAll<HTMLButtonElement>('.photo-card')
+    ).filter(c => c.style.display !== 'none');
+  }
+
+  function openAt(idx: number) {
+    const cards = visible();
+    if (idx < 0 || idx >= cards.length) return;
+    currentIdx = idx;
+    const c = cards[idx];
+    lbImg.src = c.dataset.src ?? '';
+    lbImg.alt = c.dataset.alt ?? '';
+    lbCap.textContent = `${c.dataset.alt ?? ''} (${idx + 1} / ${cards.length})`;
+    lbPrev.disabled = idx === 0;
+    lbNext.disabled = idx === cards.length - 1;
+    if (!dialog.open) dialog.showModal();
+  }
+
+  // Open on card click
+  document.querySelectorAll<HTMLButtonElement>('.photo-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const cards = visible();
+      openAt(cards.indexOf(card));
+    });
+  });
+
+  // Prev / Next buttons
+  lbPrev.addEventListener('click', (e) => { e.stopPropagation(); openAt(currentIdx - 1); });
+  lbNext.addEventListener('click', (e) => { e.stopPropagation(); openAt(currentIdx + 1); });
+
+  // Keyboard
+  dialog.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft')  openAt(currentIdx - 1);
+    if (e.key === 'ArrowRight') openAt(currentIdx + 1);
+  });
+
+  // Close
+  lbClose.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+
+  // Category filter
+  document.querySelectorAll<HTMLButtonElement>('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter ?? 'all';
+      document.querySelectorAll<HTMLButtonElement>('.filter-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      let shown = 0;
+      document.querySelectorAll<HTMLButtonElement>('.photo-card').forEach(card => {
+        const show = filter === 'all' || card.dataset.cat === filter;
+        card.style.display = show ? '' : 'none';
+        if (show) shown++;
+      });
+      emptyNote.hidden = shown > 0;
+    });
+  });
+</script>
+
+<style>
+  /* Hero */
+  .pg-hero { padding-bottom: var(--space-6); }
+  .pg-hero .badge { margin-bottom: var(--space-5); }
+  .pg-h1 { margin-top: var(--space-3); }
+  .pg-lead { max-width: 60ch; margin-top: var(--space-4); }
+
+  /* Filter bar */
+  .filters-bar {
+    padding-block: var(--space-4);
+    position: sticky; top: 64px; z-index: 40;
+    background: rgba(10,10,11,.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .filters { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .filter-btn {
+    padding: 7px 14px;
+    font-family: var(--font-sans); font-size: 12px; font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      background var(--duration-fast),
+      border-color var(--duration-fast),
+      color var(--duration-fast);
+  }
+  .filter-btn:hover { border-color: var(--border-default); color: var(--text-primary); }
+  .filter-btn.active {
+    background: var(--accent-subtle);
+    border-color: var(--accent-border);
+    color: var(--accent-primary);
+  }
+
+  /* Gallery section */
+  .pg-gallery { padding-top: var(--space-8); }
+
+  /* Grid */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  @media (min-width: 480px)  { .photo-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 768px)  { .photo-grid { grid-template-columns: repeat(4, 1fr); gap: var(--space-3); } }
+  @media (min-width: 1200px) { .photo-grid { grid-template-columns: repeat(5, 1fr); } }
+
+  /* Card */
+  .photo-card {
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    cursor: zoom-in;
+    padding: 0;
+    display: block;
+    transition:
+      border-color var(--duration-base),
+      transform var(--duration-base);
+  }
+  .photo-card:hover {
+    border-color: var(--border-default);
+    transform: translateY(-2px);
+    z-index: 1;
+  }
+  .photo-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+  .photo-card:hover img { transform: scale(1.06); }
+
+  .empty-note { color: var(--text-tertiary); margin-top: var(--space-8); }
+
+  /* CTA */
+  .cta-block h2 { margin-bottom: var(--space-3); }
+  .cta-block .lead { max-width: 56ch; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+
+  /* Lightbox */
+  #lightbox {
+    border: none; background: transparent; padding: 0;
+    max-width: 100vw; max-height: 100dvh;
+    width: 100%; height: 100%;
+  }
+  #lightbox::backdrop {
+    background: rgba(0,0,0,.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .lb-wrap {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 100%;
+    padding: var(--space-10) var(--space-6) var(--space-8);
+    position: relative;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .lb-img-wrap {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    max-height: calc(100dvh - 120px);
+  }
+  #lb-img {
+    max-width: min(90vw, 1200px);
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .lb-cap {
+    font-size: 13px; color: var(--text-tertiary);
+    text-align: center;
+  }
+
+  /* Buttons */
+  .lb-btn {
+    position: absolute;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color var(--duration-fast), background var(--duration-fast);
+  }
+  .lb-btn:hover:not(:disabled) { color: var(--text-primary); background: var(--bg-tertiary); }
+  .lb-btn:disabled { opacity: 0.25; cursor: default; }
+
+  .lb-close {
+    top: var(--space-4); right: var(--space-4);
+    width: 40px; height: 40px;
+    font-size: 20px; line-height: 1;
+  }
+  .lb-nav {
+    top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px;
+    font-size: 18px;
+  }
+  #lb-prev { left: var(--space-3); }
+  #lb-next { right: var(--space-3); }
+
+  @media (min-width: 768px) {
+    #lb-prev { left: var(--space-6); }
+    #lb-next { right: var(--space-6); }
+  }
+</style>

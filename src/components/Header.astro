@@ -1,0 +1,80 @@
+---
+import { site } from '../data/site.js';
+const { contacts, nav } = site;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="На главную">{site.name}</a>
+
+    <nav class="nav" aria-label="Основная навигация">
+      {nav.map((item) => (
+        <div class="nav-item">
+          <a href={item.href} class="nav-link">{item.label}</a>
+          {item.children && (
+            <div class="nav-dropdown">
+              {item.children.map((child) => (
+                <a href={child.href} class="nav-dropdown-link">{child.label}</a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </nav>
+
+    <a href={contacts.phoneHref} class="btn btn-primary header-cta">{contacts.phone}</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    height: 64px;
+    background: rgba(10, 10, 11, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .header-inner {
+    height: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: var(--space-6);
+  }
+  .brand {
+    font-family: var(--font-display); font-weight: 900; font-size: 22px;
+    letter-spacing: 0.02em; color: var(--text-primary);
+  }
+  .nav { display: none; gap: var(--space-6); align-items: center; }
+  .nav-item { position: relative; }
+  .nav-link {
+    font-size: 14px; font-weight: 500; color: var(--text-secondary);
+    padding-block: 8px;
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+  .nav-link:hover { color: var(--text-primary); }
+  .nav-dropdown {
+    position: absolute; top: 100%; left: 0;
+    min-width: 240px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2);
+    display: none; flex-direction: column;
+    box-shadow: var(--shadow-lg);
+  }
+  .nav-item:hover .nav-dropdown { display: flex; }
+  .nav-dropdown-link {
+    font-size: 14px; color: var(--text-secondary);
+    padding: 8px 12px; border-radius: var(--radius-sm);
+    transition: background var(--duration-fast), color var(--duration-fast);
+  }
+  .nav-dropdown-link:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+  .header-cta { white-space: nowrap; }
+
+  @media (min-width: 1024px) {
+    .nav { display: flex; }
+  }
+  @media (max-width: 1023px) {
+    .header-cta { padding: 10px 16px; font-size: 13px; }
+  }
+</style>

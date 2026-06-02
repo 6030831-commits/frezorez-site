@@ -1,0 +1,237 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site.js';
+const { contacts } = site;
+
+// Направления уровня 2 — pagemap.md
+const products = [
+  {
+    title: 'Шезлонги с логотипом',
+    text: 'Деревянные шезлонги из лиственницы/бука с лазерной гравировкой бренда. Нагрузка до 120 кг, 3 положения спинки, складной.',
+    href: '/shezlongi-iz-dereva',
+    badge: null,
+    active: true,
+  },
+  {
+    title: 'Складная мебель',
+    text: 'Столики, стулья, скамейки для мероприятий — единый брендированный комплект. Лёгкий монтаж и хранение.',
+    href: '/skladnaya-mebel',
+    badge: 'Скоро',
+    active: false,
+  },
+  {
+    title: 'Пресс-воллы и фотозоны',
+    text: 'Конструкции для брендирования пространства: пресс-воллы, рекламные стены, навигация на мероприятия.',
+    href: '/pressvoly',
+    badge: 'Скоро',
+    active: false,
+  },
+  {
+    title: 'Брендированная мебель под заказ',
+    text: 'Кастомные изделия по чертежу заказчика: любые размеры, любой материал, любой логотип.',
+    href: '/brendirovannaya-mebel',
+    badge: 'Под заказ',
+    active: false,
+  },
+];
+
+const usps = [
+  { title: 'ЧПУ-станок 2.2×4.2 м', text: 'Производим каркасы любых размеров без наценки за «нестандарт».' },
+  { title: 'Свой CO2-лазер', text: 'Гравировка логотипа в том же цехе — без субподрядчиков и задержек.' },
+  { title: 'Полный цикл', text: 'Столярка → покраска → сборка → упаковка — всё на одной площадке.' },
+  { title: 'Любая партия', text: 'От 1 образца до серийного производства. Скидка от 20 шт.' },
+];
+---
+
+<Base
+  title="Мебель для мероприятий и HoReCa — брендированная деревянная мебель | FREZOREZ"
+  description="Брендированная деревянная мебель для мероприятий, отелей, пляжей и ресторанов. Шезлонги, складная мебель, пресс-воллы. Собственное производство с ЧПУ и лазером в Москве."
+>
+
+  <!-- HERO ─────────────────────────────────────────────────────────────────── -->
+  <section class="section hub-hero">
+    <div class="container">
+      <span class="badge badge-accent badge-mono hero-badge">Линейка для B2B · Мероприятия · HoReCa</span>
+      <h1 class="hub-h1">Мебель для мероприятий<br>с <span class="accent-text">логотипом вашего бренда</span></h1>
+      <p class="lead hub-lead">
+        Шезлонги, складная мебель, пресс-воллы — производим сами на ЧПУ-станках,
+        брендируем своим лазером. Не перекупщики: производитель напрямую.
+      </p>
+      <div class="hero-actions">
+        <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Написать в Telegram</a>
+        <a href={contacts.phoneHref} class="btn btn-ghost btn-lg">{contacts.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- НАПРАВЛЕНИЯ ─────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Что производим</div>
+        <h2>Направления</h2>
+      </div>
+      <div class="products-grid">
+        {products.map((p) => (
+          p.active
+            ? (
+              <a href={p.href} class="card card-link prod-card prod-active">
+                <div class="prod-top">
+                  <h3 class="prod-title">{p.title}</h3>
+                  <span class="badge badge-accent prod-badge-live">Доступно</span>
+                </div>
+                <p class="prod-text">{p.text}</p>
+                <span class="prod-cta">Подробнее →</span>
+              </a>
+            )
+            : (
+              <div class="card prod-card prod-soon">
+                <div class="prod-top">
+                  <h3 class="prod-title">{p.title}</h3>
+                  {p.badge && <span class="badge prod-badge-soon">{p.badge}</span>}
+                </div>
+                <p class="prod-text">{p.text}</p>
+              </div>
+            )
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОЧЕМУ ПРОИЗВОДИТЕЛЬ, А НЕ ПОСРЕДНИК ────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Наше преимущество</div>
+        <h2>Производим сами — не перепродаём</h2>
+      </div>
+      <div class="usp-grid">
+        {usps.map((u) => (
+          <div class="card usp-card">
+            <h3 class="usp-title">{u.title}</h3>
+            <p>{u.text}</p>
+          </div>
+        ))}
+      </div>
+      <div class="usp-links">
+        <a href="/frezerovka-chpy" class="inline-link">ЧПУ-фрезеровка →</a>
+        <a href="/lazernaja-rezka" class="inline-link">Лазерная гравировка →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ДЛЯ КОГО ─────────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Наши клиенты</div>
+        <h2>Для кого делаем</h2>
+      </div>
+      <div class="audience-grid">
+        {[
+          { who: 'Отели и курорты',          what: 'Лаунж-зоны, бассейны, веранды с единым брендбуком.' },
+          { who: 'Рестораны и кафе',          what: 'Летние террасы, веранды, фирменный стиль заведения.' },
+          { who: 'Пляжные клубы',             what: 'Сезонная мебель, стойкая к влаге и UV.' },
+          { who: 'Фестивали и корпоративы',   what: 'Временные зоны отдыха — шезлонг как рекламоноситель.' },
+          { who: 'Event-агентства',           what: 'Комплект под ключ для заказчика.' },
+          { who: 'Оптовые закупки',           what: 'Партии 20–100+ шт, скидка, сопроводительные документы.' },
+        ].map((a) => (
+          <div class="audience-item">
+            <div class="audience-who">{a.who}</div>
+            <p class="audience-what">{a.what}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA ─────────────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="card card-featured cta-block">
+        <h2>Обсудим вашу задачу?</h2>
+        <p class="lead">Пришлите ТЗ или опишите задачу: модель, партия, логотип. Рассчитаем стоимость и сроки в рабочий день.</p>
+        <div class="cta-actions">
+          <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Telegram</a>
+          <a href={contacts.phoneHref} class="btn btn-secondary btn-lg">{contacts.phone}</a>
+          <a href="/shezlongi-iz-dereva" class="btn btn-ghost btn-lg">Шезлонги с логотипом →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* Hero */
+  .hub-hero { padding-bottom: var(--space-8); }
+  .hero-badge { margin-bottom: var(--space-5); }
+  .hub-h1 { max-width: 20ch; margin-top: var(--space-3); line-height: 1.1; }
+  .hub-lead { max-width: 62ch; margin-top: var(--space-6); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-8); }
+
+  /* Products grid */
+  .products-grid {
+    display: grid; gap: var(--space-4);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px)  { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .products-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .prod-card { display: flex; flex-direction: column; gap: var(--space-3); }
+  .prod-top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+  .prod-title { font-size: 18px; font-weight: 600; margin: 0; }
+  .prod-text { font-size: 14px; color: var(--text-secondary); flex: 1; }
+
+  .prod-badge-live { background: var(--accent-subtle); color: var(--accent-primary); }
+  .prod-badge-soon { background: var(--bg-tertiary); color: var(--text-tertiary); white-space: nowrap; }
+  .prod-badge-live, .prod-badge-soon { flex-shrink: 0; }
+
+  .prod-active .prod-cta {
+    font-size: 13px; font-weight: 500; color: var(--accent-primary);
+    margin-top: auto;
+  }
+  .prod-soon { opacity: 0.65; cursor: default; }
+  .prod-soon:hover { border-color: var(--border-subtle); background: var(--bg-secondary); }
+
+  /* USP */
+  .usp-grid {
+    display: grid; gap: var(--space-4);
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 1024px) { .usp-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .usp-card { display: flex; flex-direction: column; gap: var(--space-2); }
+  .usp-title { font-size: 16px; font-weight: 600; margin: 0; }
+
+  .usp-links {
+    display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8);
+    margin-top: var(--space-8);
+  }
+  .inline-link {
+    font-size: 14px; font-weight: 500; color: var(--text-tertiary);
+    transition: color var(--duration-fast);
+  }
+  .inline-link:hover { color: var(--accent-primary); }
+
+  /* Audience */
+  .audience-grid {
+    display: grid; gap: var(--space-4);
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 768px)  { .audience-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .audience-item {
+    padding: var(--space-5);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+  }
+  .audience-who { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-2); }
+  .audience-what { font-size: 13px; color: var(--text-secondary); }
+
+  /* CTA */
+  .cta-block h2 { margin-bottom: var(--space-3); }
+  .cta-block .lead { max-width: 60ch; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+</style>

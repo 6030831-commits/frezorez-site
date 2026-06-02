@@ -1,0 +1,178 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site.js';
+const { contacts } = site;
+
+const workshops = [
+  {
+    title: 'Столярная мастерская',
+    text: 'Раскрой, фрезеровка, шлифовка — от черновой заготовки до чистовой детали.',
+  },
+  {
+    title: 'Сварочные работы',
+    text: 'Металлические конструкции, рамы и каркасы под изделия любой сложности.',
+  },
+  {
+    title: 'Окрасочный цех',
+    text: 'Грунтование, покраска по RAL, лакировка, отделка натуральными маслами и воском.',
+  },
+  {
+    title: 'Сборочный цех',
+    text: 'Сборка готовых изделий, упаковка, подготовка к отгрузке или самовывозу.',
+  },
+];
+
+const partners = [
+  { name: 'Норникель',     src: '/content/partners/logo-ss-ru.jpg' },
+  { name: 'АндерСон',      src: '/content/partners/anderson.jpg' },
+  { name: 'Азбука Вкуса',  src: '/content/partners/azbyka.png' },
+  { name: 'ВКонтакте',     src: '/content/partners/vk.jpg' },
+  { name: 'ВкусВилл',      src: '/content/partners/vkus.jpg' },
+  { name: 'Swarovski',     src: '/content/partners/Swarovski-Logo.jpg' },
+  { name: 'Росгвардия',    src: '/content/partners/rosgvard-logo-1.png' },
+  { name: 'ОНФ',           src: '/content/partners/Onf-logo.svg.png' },
+  { name: 'Max Mara',      src: '/content/partners/Max-Mara-logo.jpg' },
+];
+---
+
+<Base
+  title="О нас — FREZOREZ.RU, столярное производство в Москве с 2016"
+  description="Столярное производство FREZOREZ в Москве с 2016 года: ЧПУ-фрезеровка, лазерная резка, сварка, покраска, сборка. Работаем по чертежам."
+>
+  <!-- HERO -->
+  <section class="section about-hero">
+    <div class="container">
+      <span class="badge badge-accent badge-mono">Производство · Москва · с 2016</span>
+      <h1 class="about-h1">Воплощаем идеи <span class="accent-text">в дереве и металле</span></h1>
+      <p class="lead about-lead">
+        Мы — команда @frezorez. Занимаемся ЧПУ-фрезеровкой с 2016 года. Изготавливаем
+        мебель и изделия по вашим чертежам или идеям: фрезеруем, режем лазером, варим, красим, собираем.
+      </p>
+    </div>
+  </section>
+
+  <!-- О ПРОИЗВОДСТВЕ -->
+  <section class="section">
+    <div class="container about-grid">
+      <div class="about-text">
+        <div class="eyebrow">Кто мы</div>
+        <h2>Производство полного цикла</h2>
+        <p>У нас работают опытные фрезеровщики, конструкторы и дизайнеры. За годы работы накопили большой опыт с деревом и пластиками: фанера, МДФ, ЛДСП, АКП (композит), акрил, ПВХ и другие листовые неметаллы.</p>
+        <p>Фрезерный станок с ЧПУ — рабочее поле 2.2×4.2 м, точность 0.025 мм. Лазерный CO2-станок — поле 1300×900 мм, подъёмный стол до 600 мм. Вырежем, покрасим, соберём.</p>
+        <p>Работаем с юрлицами и ИП по счёту. Без предоплаты для постоянных клиентов.</p>
+      </div>
+      <div class="about-photo">
+        <img src="/images/frezorez.jpg" alt="Производство FREZOREZ, Москва" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ЦЕХА -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Инфраструктура</div>
+        <h2>Четыре цеха под одной крышей</h2>
+      </div>
+      <div class="grid grid-2">
+        {workshops.map((w) => (
+          <div class="card">
+            <h3 class="ws-title">{w.title}</h3>
+            <p>{w.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- КЛИЕНТЫ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Нам доверяют</div>
+        <h2>Среди клиентов</h2>
+      </div>
+      <div class="partners-grid">
+        {partners.map((p) => (
+          <div class="partner-card" title={p.name}>
+            <img src={p.src} alt={p.name} loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="card card-featured cta-block">
+        <h2>Есть задача?</h2>
+        <p class="lead">Пришлите чертёж или опишите идею — рассчитаем стоимость и сроки, подскажем по материалу и технологии.</p>
+        <div class="cta-actions">
+          <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Telegram</a>
+          <a href={contacts.phoneHref} class="btn btn-secondary btn-lg">{contacts.phone}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-hero { padding-bottom: var(--space-8); }
+  .about-hero .badge { margin-bottom: var(--space-6); }
+  .about-h1 { max-width: 18ch; margin-top: var(--space-3); }
+  .about-lead { max-width: 62ch; margin-top: var(--space-6); }
+
+  .about-grid {
+    display: grid;
+    gap: var(--space-12);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .about-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  }
+  .about-text { display: flex; flex-direction: column; gap: var(--space-4); }
+  .about-text .eyebrow { margin-bottom: 0; }
+  .about-text h2 { margin-bottom: 0; }
+  .about-photo img {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    object-fit: cover;
+  }
+
+  .ws-title { font-size: 20px; margin-bottom: var(--space-2); }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+  @media (min-width: 640px)  { .partners-grid { grid-template-columns: repeat(5, 1fr); gap: var(--space-4); } }
+  @media (min-width: 1024px) { .partners-grid { grid-template-columns: repeat(9, 1fr); } }
+
+  .partner-card {
+    display: flex; align-items: center; justify-content: center;
+    padding: var(--space-3) var(--space-2);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    min-height: 72px;
+    transition: border-color var(--duration-base), background var(--duration-base);
+  }
+  .partner-card:hover {
+    border-color: var(--border-default);
+    background: var(--bg-tertiary);
+  }
+  .partner-card img {
+    max-height: 36px; max-width: 100%;
+    width: auto; object-fit: contain;
+    filter: grayscale(1) brightness(0.65);
+    transition: filter var(--duration-base);
+  }
+  .partner-card:hover img { filter: grayscale(0) brightness(1); }
+
+  .cta-block h2 { margin-bottom: var(--space-3); }
+  .cta-block .lead { max-width: 60ch; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+</style>
