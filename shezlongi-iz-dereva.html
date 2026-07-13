@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Деревянные шезлонги с логотипом на заказ — производство | FREZOREZ</title>
+<meta name="description" content="Производство брендированных деревянных шезлонгов из лиственницы и бука. Складной механизм, нанесение логотипа, расчёт по партии. Москва, своё производство.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-primary:#0A0A0B; --bg-secondary:#131316; --bg-tertiary:#1C1C20; --bg-elevated:#232328;
+  --border-subtle:#2A2A2F; --border-default:#38383F; --border-strong:#52525B;
+  --text-primary:#FAFAFA; --text-secondary:#A1A1AA; --text-tertiary:#71717A; --text-disabled:#52525B;
+  --accent:#F97316; --accent-hover:#EA580C; --accent-pressed:#C2410C; --accent-subtle:#1F1410; --accent-border:#7C2D12;
+  --success:#10B981;
+  --font-display:'Unbounded',sans-serif; --font-sans:'Manrope',-apple-system,sans-serif; --font-mono:'JetBrains Mono',monospace;
+  --container:1200px;
+  --r-sm:4px; --r-md:8px; --r-lg:12px; --r-xl:16px; --r-2xl:24px; --r-full:9999px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(circle at 50% -10%, rgba(249,115,22,0.06), transparent 55%);}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 24px}
+@media(min-width:768px){.wrap{padding:0 48px}}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ---- typographic helpers ---- */
+.eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:8px}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--accent)}
+h1,h2{font-family:var(--font-display);font-weight:800;line-height:1.04;letter-spacing:-.02em}
+h3{font-family:var(--font-sans);font-weight:700}
+.lead{color:var(--text-secondary);font-size:18px;line-height:1.6}
+.meta{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary)}
+
+/* ---- buttons ---- */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-sans);font-weight:600;font-size:15px;border-radius:var(--r-md);padding:14px 26px;border:1px solid transparent;cursor:pointer;transition:all .15s ease}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.btn-secondary{background:transparent;color:var(--text-primary);border-color:var(--border-default)}
+.btn-secondary:hover{border-color:var(--border-strong);background:var(--bg-tertiary)}
+
+/* ---- nav ---- */
+nav{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;background:rgba(10,10,11,.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-subtle)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;width:100%}
+.logo{font-family:var(--font-display);font-weight:800;font-size:18px;letter-spacing:.02em}
+.logo span{color:var(--accent)}
+.nav-links{display:none;gap:32px}
+.nav-links a{color:var(--text-secondary);font-size:14px;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:var(--text-primary)}
+@media(min-width:900px){.nav-links{display:flex}}
+.nav-cta{display:none}
+@media(min-width:600px){.nav-cta{display:inline-flex}}
+
+/* ---- hero ---- */
+.hero{padding:72px 0 88px;position:relative}
+.hero-grid{display:grid;gap:48px;align-items:center}
+@media(min-width:980px){.hero-grid{grid-template-columns:1.05fr .95fr;gap:64px}}
+.hero h1{font-size:clamp(40px,7vw,76px);margin:22px 0}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lead{max-width:34ch;margin-bottom:32px;font-size:19px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:36px}
+.hero-trust{display:flex;flex-wrap:wrap;gap:24px}
+.hero-trust div{display:flex;flex-direction:column;gap:4px}
+.hero-trust b{font-family:var(--font-display);font-weight:700;font-size:26px}
+.hero-img{position:relative;border-radius:var(--r-2xl);overflow:hidden;border:1px solid var(--border-subtle);
+  box-shadow:0 0 80px rgba(249,115,22,.10)}
+.hero-img .ph{aspect-ratio:4/5}
+
+/* image placeholder (mockup only — replaced by real <img>) */
+.ph{background:
+    linear-gradient(135deg,var(--bg-secondary) 0%,#16110d 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--text-tertiary);text-align:center;padding:24px;
+  background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.012) 0 12px,transparent 12px 24px);}
+.ph .ico{width:42px;height:42px;border:1.5px solid var(--border-default);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;color:var(--border-strong)}
+.ph code{font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);letter-spacing:.02em}
+
+/* ---- section base ---- */
+section{padding:88px 0}
+.sec-head{max-width:620px;margin-bottom:56px}
+.sec-head h2{font-size:clamp(30px,4.4vw,46px);margin:18px 0 0}
+
+/* ---- usp strip ---- */
+.usp{border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);padding:36px 0}
+.usp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+@media(min-width:760px){.usp-grid{grid-template-columns:repeat(4,1fr)}}
+.usp-item .meta{margin-bottom:8px}
+.usp-item h3{font-size:17px;margin-bottom:6px}
+.usp-item p{color:var(--text-secondary);font-size:14px;line-height:1.5}
+
+/* ---- models ---- */
+.models{display:grid;gap:24px}
+@media(min-width:760px){.models{grid-template-columns:repeat(3,1fr)}}
+.model{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--r-lg);overflow:hidden;transition:border-color .2s,transform .2s}
+.model:hover{border-color:var(--border-default);transform:translateY(-3px)}
+.model .ph{aspect-ratio:4/3}
+.model-body{padding:24px}
+.model-body h3{font-size:20px;margin-bottom:6px}
+.model-body .tagline{color:var(--text-secondary);font-size:14px;margin-bottom:18px}
+.specs{list-style:none;display:flex;flex-direction:column;gap:9px;border-top:1px solid var(--border-subtle);padding-top:16px}
+.specs li{display:flex;justify-content:space-between;font-size:13px}
+.specs li span:first-child{color:var(--text-tertiary)}
+.specs li span:last-child{color:var(--text-primary);font-weight:600;font-family:var(--font-mono);font-size:12px}
+
+/* ---- branding split ---- */
+.split{display:grid;gap:48px;align-items:center}
+@media(min-width:900px){.split{grid-template-columns:1fr 1fr;gap:64px}}
+.split .ph{aspect-ratio:5/4;border-radius:var(--r-xl);border:1px solid var(--border-subtle)}
+.brand-list{list-style:none;display:flex;flex-direction:column;gap:18px;margin-top:28px}
+.brand-list li{display:flex;gap:16px}
+.brand-list .n{font-family:var(--font-mono);color:var(--accent);font-size:13px;padding-top:2px}
+.brand-list h3{font-size:16px;margin-bottom:3px}
+.brand-list p{color:var(--text-secondary);font-size:14px}
+
+/* ---- materials ---- */
+.mat-grid{display:grid;gap:24px}
+@media(min-width:760px){.mat-grid{grid-template-columns:1fr 1fr}}
+.mat{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--r-lg);padding:32px}
+.mat h3{font-family:var(--font-display);font-weight:700;font-size:24px;margin-bottom:6px}
+.mat .meta{margin-bottom:18px}
+.mat p{color:var(--text-secondary);font-size:14px;line-height:1.6}
+
+/* ---- applications ---- */
+.apps{display:grid;gap:1px;background:var(--border-subtle);border:1px solid var(--border-subtle);border-radius:var(--r-lg);overflow:hidden}
+@media(min-width:760px){.apps{grid-template-columns:repeat(3,1fr)}}
+.app{background:var(--bg-secondary);padding:32px;transition:background .2s}
+.app:hover{background:var(--bg-tertiary)}
+.app .meta{margin-bottom:14px}
+.app h3{font-size:18px;margin-bottom:8px}
+.app p{color:var(--text-secondary);font-size:14px;line-height:1.55}
+
+/* ---- process ---- */
+.steps{display:grid;gap:24px;counter-reset:s}
+@media(min-width:760px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{position:relative;padding-top:24px;border-top:1px solid var(--border-default)}
+.step::before{counter-increment:s;content:"0" counter(s);font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--accent);position:absolute;top:-1px;left:0;border-top:2px solid var(--accent);padding-top:22px}
+.step h3{font-size:16px;margin:14px 0 6px}
+.step p{color:var(--text-secondary);font-size:14px;line-height:1.5}
+
+/* ---- price ---- */
+.price{background:linear-gradient(135deg,var(--bg-secondary) 0%,var(--accent-subtle) 100%);border:1px solid var(--accent-border);border-radius:var(--r-2xl);padding:48px}
+@media(min-width:900px){.price{padding:56px 64px}}
+.price-grid{display:grid;gap:40px;align-items:center}
+@media(min-width:900px){.price-grid{grid-template-columns:1fr 1fr}}
+.tiers{display:flex;flex-direction:column;gap:14px}
+.tier{display:flex;align-items:baseline;justify-content:space-between;background:var(--bg-primary);border:1px solid var(--border-subtle);border-radius:var(--r-md);padding:18px 22px}
+.tier .q{font-family:var(--font-mono);font-size:13px;color:var(--text-secondary)}
+.tier .p{font-family:var(--font-display);font-weight:700;font-size:22px}
+.tier .p small{font-size:12px;color:var(--text-tertiary);font-family:var(--font-mono);font-weight:400}
+.todo{color:var(--accent);font-family:var(--font-mono);font-size:13px}
+
+/* ---- faq ---- */
+.faq{max-width:760px}
+details{border-bottom:1px solid var(--border-subtle);padding:20px 0}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:600;font-size:17px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent);font-size:22px;font-family:var(--font-mono);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--text-secondary);font-size:15px;line-height:1.6;margin-top:14px;max-width:68ch}
+
+/* ---- cta ---- */
+.cta{text-align:center;padding:96px 24px;border-top:1px solid var(--border-subtle)}
+.cta h2{font-size:clamp(32px,5vw,54px);max-width:16ch;margin:18px auto 20px}
+.cta .lead{max-width:48ch;margin:0 auto 36px}
+.cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+
+/* ---- related ---- */
+.related{display:grid;gap:16px;margin-top:8px}
+@media(min-width:680px){.related{grid-template-columns:repeat(3,1fr)}}
+.rel{display:flex;justify-content:space-between;align-items:center;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--r-md);padding:18px 22px;transition:border-color .2s}
+.rel:hover{border-color:var(--accent-border)}
+.rel span{font-weight:600;font-size:15px}
+.rel em{color:var(--accent);font-style:normal}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--border-subtle);padding:48px 0;color:var(--text-tertiary);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
+footer a:hover{color:var(--text-secondary)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">FREZO<span>REZ</span></div>
+    <div class="nav-links">
+      <a href="#models">Модели</a>
+      <a href="#branding">Брендирование</a>
+      <a href="#price">Цена и партии</a>
+      <a href="#applications">Применение</a>
+      <a href="#faq">Вопросы</a>
+    </div>
+    <a href="https://t.me/frezorezwood" class="btn btn-primary nav-cta" style="padding:9px 18px;font-size:14px">Рассчитать партию</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Своё производство · Москва</span>
+      <h1>Деревянные шезлонги <em>с вашим логотипом</em></h1>
+      <p class="lead">Делаем брендированные складные шезлонги из лиственницы и бука под пляжные клубы, веранды и мероприятия. Не перекупаем — режем, шлифуем и наносим логотип на собственном цеху.</p>
+      <div class="hero-actions">
+        <a href="https://t.me/frezorezwood" class="btn btn-primary">Запросить расчёт по партии</a>
+        <a href="tel:+79255560166" class="btn btn-secondary">+7 925 556-01-66</a>
+      </div>
+      <div class="hero-trust">
+        <div><b>2016</b><span class="meta">на рынке</span></div>
+        <div><b>20–100+</b><span class="meta">штук в партии</span></div>
+        <div><b>Лого</b><span class="meta">гравировка / печать</span></div>
+      </div>
+    </div>
+    <div class="hero-img">
+      <div class="ph">
+        <div class="ico">▦</div>
+        <span class="meta">Главное фото</span>
+        <code>/foto/shezlongi/hero.jpg</code>
+        <code style="opacity:.6">реальный шезлонг на пляже / веранде, 4:5</code>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- USP strip -->
+<div class="usp">
+  <div class="wrap usp-grid">
+    <div class="usp-item">
+      <div class="meta">01 / Материал</div>
+      <h3>Лиственница и бук</h3>
+      <p>Породы под улицу и помещение. Не сосна-однодневка.</p>
+    </div>
+    <div class="usp-item">
+      <div class="meta">02 / Механизм</div>
+      <h3>Складной каркас</h3>
+      <p>Компактное хранение и перевозка, регулируемая спинка.</p>
+    </div>
+    <div class="usp-item">
+      <div class="meta">03 / Бренд</div>
+      <h3>Логотип в цене</h3>
+      <p>Гравировка по дереву или печать на ткани — на ваш макет.</p>
+    </div>
+    <div class="usp-item">
+      <div class="meta">04 / Опт</div>
+      <h3>Партиями от 20 шт</h3>
+      <p>Прайс по объёму, единый стиль на весь объект.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODELS -->
+<section id="models">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Модельный ряд</span>
+      <h2>Три базовых модели — под пляж, веранду и сцену</h2>
+    </div>
+    <div class="models">
+      <div class="model">
+        <div class="ph"><div class="ico">▦</div><code>/foto/shezlongi/model-classic.jpg</code></div>
+        <div class="model-body">
+          <h3>Классический лежак</h3>
+          <p class="tagline">Низкая посадка, регулируемая спинка — для пляжа и бассейна.</p>
+          <ul class="specs">
+            <li><span>Материал</span><span>лиственница</span></li>
+            <li><span>Габариты</span><span>[НУЖНА ЦИФРА]</span></li>
+            <li><span>Вес</span><span>[НУЖНА ЦИФРА]</span></li>
+            <li><span>Покрытие</span><span>масло / лак</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="model">
+        <div class="ph"><div class="ico">▦</div><code>/foto/shezlongi/model-folding.jpg</code></div>
+        <div class="model-body">
+          <h3>Складной шезлонг</h3>
+          <p class="tagline">Полностью складывается — логистика и хранение для ивентов.</p>
+          <ul class="specs">
+            <li><span>Материал</span><span>бук / лиственница</span></li>
+            <li><span>В сложенном</span><span>[НУЖНА ЦИФРА]</span></li>
+            <li><span>Позиций спинки</span><span>[НУЖНА ЦИФРА]</span></li>
+            <li><span>Ткань</span><span>опционально</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="model">
+        <div class="ph"><div class="ico">▦</div><code>/foto/shezlongi/model-premium.jpg</code></div>
+        <div class="model-body">
+          <h3>С подлокотниками</h3>
+          <p class="tagline">Премиальная посадка для лаунж-зон и VIP-веранд.</p>
+          <ul class="specs">
+            <li><span>Материал</span><span>бук</span></li>
+            <li><span>Габариты</span><span>[НУЖНА ЦИФРА]</span></li>
+            <li><span>Нагрузка</span><span>[НУЖНА ЦИФРА]</span></li>
+            <li><span>Брендирование</span><span>лого на спинке</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDING -->
+<section id="branding" style="background:linear-gradient(180deg,var(--bg-primary),var(--bg-secondary))">
+  <div class="wrap split">
+    <div>
+      <span class="eyebrow">Брендирование</span>
+      <h2 style="font-size:clamp(28px,4vw,42px);margin-top:18px">Логотип, который держит улицу и сезон</h2>
+      <p class="lead" style="margin-top:18px">Главный смысл — мебель работает на ваш бренд. Наносим логотип так, чтобы он жил весь сезон под солнцем и водой, а не сходил после первого дождя.</p>
+      <ul class="brand-list">
+        <li><span class="n">01</span><div><h3>Лазерная гравировка по дереву</h3><p>Не выгорает и не стирается, благородно смотрится на каркасе.</p></div></li>
+        <li><span class="n">02</span><div><h3>Печать / нанесение на ткань</h3><p>Полноцветный логотип на полотне лежака или подголовнике.</p></div></li>
+        <li><span class="n">03</span><div><h3>Фирменный цвет ткани</h3><p>Подбираем полотно под палитру клуба или бренда.</p></div></li>
+      </ul>
+    </div>
+    <div class="ph"><div class="ico">▦</div><span class="meta">Макро брендирования</span><code>/foto/shezlongi/branding-macro.jpg</code><code style="opacity:.6">крупно: гравировка лого на дереве</code></div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Материалы</span>
+      <h2>Лиственница или бук — подскажем под задачу</h2>
+    </div>
+    <div class="mat-grid">
+      <div class="mat">
+        <h3>Лиственница</h3>
+        <div class="meta">для улицы · пляж · открытые веранды</div>
+        <p>Природно стойкая к влаге и перепадам, со временем не боится открытого воздуха. Рабочая лошадка для пляжных клубов и баз отдыха, где мебель стоит весь сезон под солнцем и дождём.</p>
+      </div>
+      <div class="mat">
+        <h3>Бук</h3>
+        <div class="meta">премиум · крытые зоны · лаунж</div>
+        <p>Плотная, гладкая текстура и аккуратный рисунок — для VIP-зон, крытых веранд и интерьерных лаунжей, где важна тактильность и дорогой вид.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATIONS -->
+<section id="applications" style="background:var(--bg-secondary)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Применение</span>
+      <h2>Где это уже работает</h2>
+    </div>
+    <div class="apps">
+      <div class="app">
+        <div class="meta">Пляжные клубы и базы отдыха</div>
+        <h3>Единый стиль зоны отдыха</h3>
+        <p>Партия в одном дизайне с логотипом клуба — узнаваемость на всю береговую линию.</p>
+      </div>
+      <div class="app">
+        <div class="meta">Кафе и летние веранды</div>
+        <h3>Лаунж под открытым небом</h3>
+        <p>Складные модели легко убрать в межсезонье и собрать к открытию террасы.</p>
+      </div>
+      <div class="app">
+        <div class="meta">Фестивали и мероприятия</div>
+        <h3>Брендированная зона ивента</h3>
+        <p>Логотип спонсора или площадки на сцене отдыха — отлично попадает в кадр и сторис.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Как работаем</span>
+      <h2>От макета до партии на объекте</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Бриф и макет</h3><p>Модель, объём, ваш логотип. Подскажем материал под условия.</p></div>
+      <div class="step"><h3>Расчёт и образец</h3><p>Фиксируем цену по партии, при необходимости — пробный экземпляр.</p></div>
+      <div class="step"><h3>Производство</h3><p>Резка, шлифовка, сборка и брендирование на собственном цеху.</p></div>
+      <div class="step"><h3>Доставка</h3><p>Отгрузка партии в Москве и области, удобной службой.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section id="price">
+  <div class="wrap">
+    <div class="price">
+      <div class="price-grid">
+        <div>
+          <span class="eyebrow">Цена</span>
+          <h2 style="font-size:clamp(28px,4vw,40px);margin:18px 0 14px">Чем больше партия — тем ниже цена за штуку</h2>
+          <p class="lead">Стоимость зависит от модели, материала и способа брендирования. Назовите объём — пришлём точный расчёт в тот же день.</p>
+          <a href="https://wa.me/79255560166" class="btn btn-primary" style="margin-top:26px">Получить расчёт в WhatsApp</a>
+        </div>
+        <div class="tiers">
+          <div class="tier"><span class="q">партия 20 шт</span><span class="p"><span class="todo">от ___ ₽</span><small> /шт</small></span></div>
+          <div class="tier"><span class="q">партия 50 шт</span><span class="p"><span class="todo">от ___ ₽</span><small> /шт</small></span></div>
+          <div class="tier"><span class="q">партия 100+ шт</span><span class="p"><span class="todo">от ___ ₽</span><small> /шт</small></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--bg-secondary)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Вопросы</span>
+      <h2>Коротко о главном</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>Какая минимальная партия?</summary><p>Работаем от 20 штук — это оптимальный объём, чтобы держать единый стиль на объекте и хорошую цену за штуку. Точные условия зависят от модели и брендирования.</p></details>
+      <details><summary>Какие сроки производства партии в 50 штук?</summary><p>Срок зависит от модели и загрузки цеха. [НУЖНА ЦИФРА — реальный срок партии 50 шт]. Назовём точную дату при расчёте.</p></details>
+      <details><summary>Можно нанести наш логотип?</summary><p>Да, это основной запрос наших клиентов. Делаем лазерную гравировку по дереву или нанесение на ткань по вашему макету, можем подобрать фирменный цвет полотна.</p></details>
+      <details><summary>Вы сами производите или перепродаёте?</summary><p>Производим сами на собственном столярном цеху в Москве с 2016 года: режем, шлифуем, собираем и брендируем. Поэтому контролируем качество, материал и сроки.</p></details>
+      <details><summary>Есть доставка и в каком регионе работаете?</summary><p>Москва и Московская область, отгружаем удобной курьерской службой; возможен самовывоз с производства на ул. Буракова, 6.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta">
+  <div class="wrap" style="max-width:820px">
+    <span class="eyebrow" style="justify-content:center">Готовы обсчитать вашу партию</span>
+    <h2 style="margin-left:auto;margin-right:auto">Пришлите модель и объём — посчитаем сегодня</h2>
+    <p class="lead">Напишите в Telegram или WhatsApp: какая модель, сколько штук, нужен ли логотип. Вернёмся с ценой и сроком.</p>
+    <div class="cta-actions">
+      <a href="https://t.me/frezorezwood" class="btn btn-primary">Написать в Telegram</a>
+      <a href="https://wa.me/79255560166" class="btn btn-secondary">WhatsApp</a>
+      <a href="tel:+79255560166" class="btn btn-secondary">+7 925 556-01-66</a>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<section style="padding-top:64px;padding-bottom:88px">
+  <div class="wrap">
+    <span class="eyebrow">Смотрите также</span>
+    <div class="related" style="margin-top:24px">
+      <a href="/skladnaya-mebel" class="rel"><span>Складная мебель для мероприятий</span><em>→</em></a>
+      <a href="/mebel-dlya-meropriyatij" class="rel"><span>Мебель и оформление ивентов</span><em>→</em></a>
+      <a href="/pressvoly" class="rel"><span>Прессволы и фотозоны</span><em>→</em></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">FREZO<span>REZ</span></div>
+    <div>Москва, ул. Буракова, 6 · <a href="tel:+79255560166">+7 925 556-01-66</a> · <a href="https://t.me/frezorezwood">@frezorezwood</a></div>
+    <div class="meta">Своё производство с 2016</div>
+  </div>
+</footer>
+
+</body>
+</html>

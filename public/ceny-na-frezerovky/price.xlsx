@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="yandex-verification" content="e115d84fe80fae32" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="yandex-verification" content="b330e706b1ce79f4" />
+    <title>FREZOREZ.RU - стоимость работ на ЧПУ
+</title>
+    <meta name="description" content="Стоимсть услуг фрезеровки. лазерной резки и сборки, в Москве.
+">
+   
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="icon" max-age="31536000" type="image/png" href="../favicon.png" />
+    <link rel="apple-touch-icon" max-age="31536000" href="../apple-touch-favicon.png" />
+    </head>
+<body >
+
+<div id="app">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">  
+    <div class="container justify-content-center">
+
+   
+       <!-- class="mr-auto" -->
+    <div  style="position:absolute;left:0em; top:0em; margin-top:2em;margin-left: 1.6em;">
+        <button class="navbar-toggler  " data-toggle="collapse" aria-expanded="false" 
+            aria-label="Toggle navigation"  type="button"data-target="#navbarsExample08" aria-controls="navbarsExample08" >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    
+    </div>
+   
+   
+    
+    <a  href="../index.html">
+            <img max-age="31536000" class="logo-img" src="../assets/img/logo.png">
+    </a>
+     
+    <!--  <ul class="ml-auto"></ul> -->
+    <div class="hidden-pc row cenetered right ml-auto fix-boot-pos-right">
+     <a href="../korzinka.html">
+        <shop-cart-icon/>
+     </a>
+    </div>
+  </div>
+
+ 
+
+  <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+    
+    <!-- <ul class="navbar-nav  ">
+    <li class="nav-item">
+                <a  href="/">
+                <img max-age="31536000" class="logo-img" src="/assets/img/logo.png">
+                </a>
+        </li>
+        
+            
+
+        </ul> -->
+   
+            
+        <div class="navbar-nav sm w-100 nav-ui mr-auto">
+            <div class="nav-item "><a class="nav-link nobr" href="../izgotovlenie-produkcii-iz-horeca.html" >HORECA</a></div>
+            
+            <div class="nav-item "><a class="nav-link nobr" href="../derevyannaya-posuda-dlya-barov-restoranov.html">Для баров и ресторанов</a></div> 
+            <div class="nav-item "><a class="nav-link nobr" href="../korobochki-penaly-iz-dereva.html">Коробочки пеналы из дерева</a></div>
+            <div class="nav-item "><a class="nav-link nobr" href="../balansiry-nejrotrenazhery.html">НЕЙРОТРЕНАЖЕРЫ</a></div>
+            <div class="nav-item "><a class="nav-link nobr" href="../suveniry-i-podarki.html">Сувениры и подарки</a></div>
+            <div class="nav-item "><a class="nav-link nobr" href="../podokonniki-stoleshnicy-iz-dereva.html">Подоконники столешницы</a></div>
+            <!--  <li class="nav-item">
+                <a class="nav-link" href="/#INFO" onclick="ym(53352265, 'reachGoal', 'nav3d');return true;">О НАС</a>
+                </li> -->
+                
+        </div>
+
+    <ul class="navbar-nav nav-ui right ml-auto row centered">
+        <li class="nav-item nav-slot bold">
+                <p class="contacts-data">
+                    <a target="_blank" class="dark-blue"  href="mailto:info@frezorez.ru">INFO@FREZOREZ.RU</a> 
+                </p>
+                <p class="contacts-data">
+                    <a  target="_blank" href="https://yandex.ru/maps/-/CBUE68E2pC">Москва, ул. Буракова, 6 стр. 2</a>
+                </p>
+        </li>
+
+        
+            
+
+        <li class="nav-item  nav-slot right  bold">
+           <p class="contacts-data">   
+            <div class="row-m centered right">
+                    <div class="nav-item my-auto nav-icon">
+                        <a href="https://wa.me/79255560166?text=Я%20заинтересован%20фрезеровкой%20ЧПУ" target="_blank" onclick="ym(53352265, 'reachGoal', 'whatsapp');return true;">
+                            <img max-age="31536000" class="top-icons" src="../assets/img/whatsapp.png">
+                        </a>
+                    </div>
+                    <div class="nav-item my-auto nav-icon">
+                        <a href="https://www.instagram.com/frezorez/" target="_blank" onclick="ym(53352265, 'reachGoal', 'whatsapp');return true;">
+                            <img max-age="31536000" class="top-icons" src="../assets/img/instagram.png">
+                        </a>
+                    </div>
+                    <div class="nav-item my-auto nav-icon">
+                        <a href="https://t.me/frezorezwood?text=Я%20заинтересован%20фрезеровкой%20ЧПУ" target="_blank" onclick="ym(53352265, 'reachGoal', 'whatsapp');return true;">
+                        <div class="icn-box lg">
+                            <icn-tg/>
+                        </div>
+                        </a>
+                    </div>
+            </div>
+            </p>
+            <p class="contacts-data">                    
+                    <a class="dark-orange"   href="tel:+79255560166">8 925 556-01-66</a> 
+                </p>
+        </li>
+
+        <div class="nav-item nav-slot row centered hidden-m">
+            <a href="../korzinka.html">
+                <shop-cart-icon/>
+            </a>
+        </div>
+
+        
+    </ul>
+
+    
+
+  </div>
+ 
+ 
+</nav>
+
+<!-- 
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+<div class="container-fluid mx-auto">
+    <a class="navbar-brand" href="/">
+    <img max-age="31536000" class="logo-img" src="/assets/img/logo.png">
+    </a>
+
+    <ul class="navbar-nav mr-auto d-lg-none">
+    </ul>
+
+    <ul class="navbar-nav d-lg-none">
+        <li class="nav-item">
+            <a href="https://wa.me/79255560166?text=Я%20заинтересован%20фрезеровкой%20ЧПУ" onclick="ym(53352265, 'reachGoal', 'whatsapp');return true;">
+                <img max-age="31536000" class="top-icons" src="/assets/img/whatsapp.png">
+            </a>
+        </li>
+    </ul>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" 
+        data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample07">
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+        <a class="nav-link" href="/lazernaja-rezka/" onclick="ym(53352265, 'reachGoal', 'navlazer');return true;">ЛАЗЕРНАЯ РЕЗКА</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/#frezerovka" onclick="ym(53352265, 'reachGoal', 'nav3d');return true;">3D ФРЕЗЕРОВКА</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link " href="/#facade" onclick="ym(53352265, 'reachGoal', 'navfacade');return true;">МЕБЕЛЬНЫЕ ФАСАДЫ</a>
+        </li>
+
+        </ul>
+
+
+        <ul class="navbar-nav ">
+            <li class="nav-item bold">
+            <a class="nav-link " href="#price" onclick="ym(53352265, 'reachGoal', 'calc1');return true;">РАСЧЕТ СТОИМОСТИ</a>
+            </li>
+        </ul>
+
+
+        <ul class="navbar-nav d-none d-lg-block">
+            <li class="nav-item">
+            <a href="https://wa.me/79255560166?text=Я%20заинтересован%20фрезеровкой%20ЧПУ" onclick="ym(53352265, 'reachGoal', 'whatsapp');return true;">
+            <img max-age="31536000" class="top-icons" src="/assets/img/whatsapp.png">
+            </a>
+            </li>
+        </ul>
+
+        <form class="form-inline my-2 my-md-0 mr-5 text-right">
+        <p class="fz-time text-right">
+        <a class="fz-phone dropdown-item" href="tel:+79255560166">+7 (925) 556-01-66</a>
+        <a href="https://yandex.ru/maps/-/CBUE68E2pC">Москва, ул. Буракова, 6 стр. 2</a>
+        <br><a class="text-sm" href="mailto:info@frezorez.ru">info@frezorez.ru</a>
+        </p>
+        </form>
+</div>
+
+
+</div>
+</nav> --><div class="container  first-block">
+<h1>ПРАЙС</h1>
+        <div class="row">
+            <p class="text-center data"> 
+                <a href="price.xlsx.html">Фрезеровка.xlsx</a>
+                <a href="price.xlsx.html">Лазерная_резка.xlsx</a>
+            </p>
+        </div>
+</div>
+<!-- STOP CONTENT --->
+
+
+<div class="anchor" id="order"> </div>
+<div class="anchor" id="calc"> </div>
+<div class="container block ">
+    <div class="row">
+      <div class="col-md-6"><calc></calc></div>
+      
+      <div class="col-md-6"><contact-form></contact-form></div>
+    </div>
+</div>
+
+<div class="anchor" id="delivery"> </div>
+    <div class="container block">
+        <div class="row">
+            <div class="col-12">
+            <h2 class="lined">ДОСТАВКА</h2>
+            </div>
+            
+        </div>
+ 
+        <div class="row text-center data">
+            <div class="col-lg-6">
+                <img style="width:7.5em;height:7.5em;" class="rounded-circle" src="../assets/icons_png/track.png" />
+                <h3>Курьерские службы</h3>
+                <p class="text-solo">Мы используем популярные службы доставки:<br> GettDelivery, Dostavista и Грузовичкоф.</p>
+            </div>
+
+            <div class="col-lg-6">
+                <img style="width:7.5em;height:7.5em;" class="rounded-circle" src="../assets/icons_png/box.png" />
+                <h3 class="rounded-circle">Самовывоз</h3>
+                <p class="text-solo">Вы можете осуществить вывоз готовой продукции<br> сомостоятельно по адресу:
+                    <a href="https://yandex.ru/maps/-/CBUE68E2pC">Москва, ул. Буракова, д. 6 </a>
+                </p>
+            </div>
+ <div class=" col-md-12 text-centerdata">
+                <img  max-age="31536000" class="delivery-brands" style="width:auto;height:120px;" src="../assets/img/transport_companies/getDelivery.svg" />
+                <img  max-age="31536000" class="delivery-brands" style="width:auto;height:55px;" src="../assets/img/transport_companies/dostavista.svg" />
+                <img  max-age="31536000" class="delivery-brands" style="width:auto;height:120px;" src="../assets/img/transport_companies/gryzovichkof.svg" />
+            </div>
+        </div>
+    </div>
+</div><div class="anchor" id="INFO"> </div>
+<div class="container block">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="lined">О НАС</h2>
+            <p class="text-center">Frezorez - это команда молодых специалистов. Мы занимаемся фрезеровкой ПВХ, МДФ и 3D фрезеровкой.</p>
+        </div>
+        
+    </div>
+
+    <div class="row data">
+        <div class="col-sm-4 text-center">
+            <img  max-age="31536000" class="rounded-circle delivery-icons" src="../assets/icons_png/gears.png" />
+            <p class="align-middle text-prop">два станка с рабочим полем 2.2х4.1 метра </p>
+        </div>
+
+        <div class="col-sm-4 text-center">
+            <img  max-age="31536000" class="rounded-circle delivery-icons" src="../assets/icons_png/time.png" />
+            <p class="align-middle text-prop">срочная фрезеровка </p>
+        </div>
+        
+        <div class="col-sm-4 text-center">
+            <img  max-age="31536000" class="rounded-circle delivery-icons" src="../assets/icons_png/support2.png" />
+            <p class="align-middle text-prop">индивидуальный подход к клиенту</p>
+        </div>
+
+        <div class="col-sm-4 text-center">
+            <img  max-age="31536000" class="rounded-circle delivery-icons" src="../assets/icons_png/rub.png" />
+            <p class="align-middle text-prop">фрезеровка от 17 руб/м.</p>
+        </div>
+        
+        <div class="col-sm-4 text-center">
+            <img  max-age="31536000" class="rounded-circle delivery-icons" src="../assets/icons_png/order.png" />
+            <p class="align-middle text-prop">минимальный заказ 2000 руб </p>
+        </div>
+         
+        <div class="col-sm-4 text-center">
+            <img  max-age="31536000" class="rounded-circle delivery-icons" src="../assets/icons_png/premium.png" />
+            <p class="align-middle text-prop">высокое качество изготовления </p>
+        </div>
+ 
+ 
+    </div>
+
+
+    <div class="row text-center about-img">
+        <div class="col-md-12">
+            <img  max-age="31536000" class=" " style="width:80%;height:auto;" src="../images/frezorez.jpg" />
+        </div>
+    </div>
+
+    
+
+   
+</div>
+</div>
+</div>
+
+<div class="container block">
+    
+        <h2>НАШИ КЛИЕНТЫ</h2>
+    
+    <div id="carouselExample" class="carousel-clients carousel slide" data-ride="carousel" data-interval="900000">
+        <div class="carousel-inner-clients carousel-inner row w-100 mx-auto" role="listbox">
+                                <div class="carousel-client carousel-item col-12 col-sm-6 col-md-4 col-lg-2 active">
+                          <img class="img-fluid mx-auto d-block" src="../content/partners/logo-ss-ru.jpg" alt="Норникель">
+            </div>
+
+                                <div class="carousel-client carousel-item col-12 col-sm-6 col-md-4 col-lg-2 ">
+                          <img class="img-fluid mx-auto d-block" src="../content/partners/anderson.jpg" alt="АндерСон">
+            </div>
+
+                                <div class="carousel-client carousel-item col-12 col-sm-6 col-md-4 col-lg-2 ">
+                          <img class="img-fluid mx-auto d-block" src="../content/partners/azbyka.png" alt="Азбука Вкуса">
+            </div>
+
+                                <div class="carousel-client carousel-item col-12 col-sm-6 col-md-4 col-lg-2 ">
+                          <img class="img-fluid mx-auto d-block" src="../content/partners/vk.jpg" alt="Вконтакте">
+            </div>
+
+                                <div class="carousel-client carousel-item col-12 col-sm-6 col-md-4 col-lg-2 ">
+                          <img class="img-fluid mx-auto d-block" src="../content/partners/vkus.jpg" alt="ВкусВилл">
+            </div>
+
+                                <div class="carousel-client carousel-item col-12 col-sm-6 col-md-4 col-lg-2 ">
+                          <img class="img-fluid mx-auto d-block" src="../content/partners/Swarovski-Logo.jpg" alt="Swarovski">
+            </div>
+
+                                <div class="carousel-client carousel-item col-12 col-sm-6 col-md-4 col-lg-2 ">
+                          <img class="img-fluid mx-auto d-block" src="../content/partners/rosgvard-logo-1.png" alt="Росгвардия">
+            </div>
+
+                                <div class="carousel-client carousel-item col-12 col-sm-6 col-md-4 col-lg-2 ">
+                          <img class="img-fluid mx-auto d-block" src="../content/partners/Onf-logo.svg.png" alt="Общеросийский народный фронт">
+            </div>
+
+                                <div class="carousel-client carousel-item col-12 col-sm-6 col-md-4 col-lg-2 ">
+                          <img class="img-fluid mx-auto d-block" src="../content/partners/Max-Mara-logo.jpg" alt="Max-Mara">
+            </div>
+
+                </div>
+        <a class="carousel-control-prev" href="price.xlsx.html#carouselExample" role="button" data-slide="prev">
+        <i class="fa fa-chevron-left fa-lg text-muted"></i>
+        <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next text-faded" href="price.xlsx.html#carouselExample" role="button" data-slide="next">
+        <i class="fa fa-chevron-right fa-lg text-muted"></i>
+        <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+   
+ </div>
+<script src="../js/jquery.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/app.js"></script>
+
+
+    <div class="container block">
+    <h2>КОНТАКТЫ</h2>
+</div>
+<div class="container-fluid map ">
+ 
+    <div class="row">
+            <div class="mapcontacts">
+            
+            <p>
+            <a href="tel:+79258703106">8 925 870-31-06</a>  <br>
+            <a href="tel:+79255560166">8 925 556-01-66</a> <br>
+            <a href="mailto:info@frezorez.ru">INFO@FREZOREZ.RU</a> 
+            
+            <p>
+            <a href="https://yandex.ru/maps/-/CBUE68E2pC">Москва, ул. Буракова, 6 стр. 2</a>
+                
+ </p> </div>
+        <div id="map" style="width: 100%; height: 37rem"></div>
+        
+    </div>
+</div>
+<!-- onclick="app.sendPhone();" -->
+<a href="tel:+79255560166">
+    <div id="call-me" class="d-lg-none"></div>
+</a>
+<script max-age="31536000" src="https://api-maps.yandex.ru/2.1/?apikey=4f8eb8a7-aa87-4305-bc5d-7ef5c62cdb5a&lang=ru_RU" type="text/javascript"></script>
+<script max-age="31536000" src="../assets/js/map.js" type="text/javascript"></script>    <a id="back-to-top" href="price.xlsx.html#" class="back-to-top" role="button" title="Вверх" data-toggle="tooltip" data-placement="left">
+    <img class="btn-shadow" src="../assets/img/slide-up-48.png" alt="вверх">
+</a>
+
+<footer id="footer">
+
+                <div class="container">
+
+                  <div class="row block">
+                      <div class="col-sm-4 col-xs-6">
+                        <h2>Фрезеровка</h2>
+                        <ul class="list-unstyled">
+                          <li><a href="../3d-frezerovka.html">3D фрезеровка</a></li>
+                          <li><a href="../frezerovka-acryl.html">Фрезеровка акрила</a></li>
+                          <li><a href="../frezerovka-chpy.html">Фрезеровка ЧПУ</a></li>
+                          <li><a href="../frezerovka-dereva.html">Фрезеровка дерева</a></li>
+
+                          <li><a href="../frezerovka-fanery.html">Фрезеровка фанеры</a></li>
+                          <li><a href="../frezerovka-kompozita.html">Фрезеровка композита</a></li>
+                          <li><a href="../frezerovka-mdf.html">Фрезеровка МДФ</a></li>
+                          <li><a href="../frezerovka-pvh.html">Фрезеровка ПВХ</a></li>
+                        </ul>
+                        <h2>Лазерная резка</h2>
+                        <ul class="list-unstyled">
+                          <li><a href="../lazernaja-rezka/index.html">Лазерная резка</a></li>
+                          </ul>
+                      </div>
+                      <div class="col-sm-4 col-xs-6">
+                        <h2>Информация</h2>
+                        <ul class="list-unstyled">
+                          <li><a href="../trebovaniya-k-maketam.html">Требования к макетам</a></li>
+                          <li><a href="price.xlsx.html">Прайс-лист</a></li>
+                          <li><a href="price.xlsx.html#calc">Калькулятор</a></li>
+                        </ul>
+                        <h2>Услуги</h2>
+                        <ul class="list-unstyled">
+                          <li><a href="../ypakovka.html">Упаковка</a></li>
+                          <li><a href="../dostavka.html">Доставка</a></li>
+                          <li><a href="../mebel-iz-fanery.html">Мебель из фанеры</a></li>
+                          <li><a href="../izgotovlenie-produkcii-iz-horeca.html">Изготовление продукции HORECA</a></li>
+                          <li><a href="../derevyannaya-posuda-dlya-barov-restoranov.html">Деревянная посуда для баров и ресторанов</a></li>
+                          <li><a href="../balansiry-nejrotrenazhery.html">Балансиры и нейротренажеры</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-4 col-xs-6">
+                        <h2>Контакты</h2>
+                        <ul class="list-unstyled">
+                          <li><a target="_blank" href="mailto:info@frezorez.ru">info@frezorez.ru</a></li>
+                          <li><a target="_blank" href="tel:+79255560166">+7 (925)556-01-66</a></li>
+                          <li>
+                          <span class="align-middle "><a target="_blank" href="https://www.facebook.com/frezorez/?ref=bookmarks"><img class="  social-icons" src="../assets/img/icons_social/facebook.svg"></a></span>
+                       <span class="align-middle "><a target="_blank" href="https://vk.com/public157944963"><img class="  social-icons" src="../assets/img/icons_social/vk.svg"></a></span>
+                       <span class="align-middle "><a target="_blank" href="https://www.instagram.com/frezorez/"><img class="  social-icons" src="../assets/img/icons_social/insta.svg"></a></span>
+                      
+                          </li>
+
+                          <li class="pt-2"><a target="_blank" href="https://yandex.ru/maps/-/CBUE68E2pC">Москва, Россия
+                            <br>ул. Буракова, 6</a></li>
+                          <li class="pt-2">
+                            Ближайщие станции метро:
+                            <ul class="list-unstyled">
+                              <li> <img class="icon-metro" src="../assets/svg/metro_s_blue.svg" alt="Семеновская лого"> Семеновская</li>
+                              <li> <img class="icon-metro" src="../assets/svg/metro_s_blue.svg" alt="Семеновская лого"> Электрозаводская</li>
+                              <li> <img class="icon-metro" src="../assets/svg/metro_s_pink.svg" alt="Соколиная гора лого"> Соколиная гора</li>
+                              <li> <img class="icon-metro" src="../assets/svg/metro_s_violet.svg" alt="Лефотово лого"> Лефотово</li>
+                              <li> <img class="icon-metro" src="../assets/svg/metro_s_yellow.svg" alt="Авиамоторная лого"> Авиамоторная</li>
+                              <li> <img class="icon-metro" src="../assets/svg/metro_s_yellow.svg" alt="Шоссе Энтузиастов лого"> Шоссе Энтузиастов</li>
+                            </ul>
+                          </li>  
+                        </ul>
+
+                     </div>
+
+
+                  </div>
+                                  </div>
+
+
+              </footer>
+
+
+</body>
+
+	  <!-- STOP CONTENT --->
+</div>
+
+<script>
+$(function(){ 
+     var navMain = $(".navbar-collapse"); // avoid dependency on #id
+     // "a:not([data-toggle])" - to avoid issues caused
+     // when you have dropdown inside navbar
+     navMain.on("click", "a:not([data-toggle])", null, function () {
+         navMain.collapse('hide');
+     });
+ });
+ 
+ $(document).ready(function(){
+     $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+        
+        $('#back-to-top').tooltip('show');
+});
+</script>
+<script max-age="31536000" type="text/javascript" src="../assets/js/carusel.js"> </script>
+
+
+ 
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(53352265, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/53352265" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { pages } from '../data/pages.js';
+import { site } from '../data/site.js';
 
 export function getStaticPaths() {
   return Object.entries(pages).map(([slug, data]) => ({
@@ -10,9 +11,27 @@ export function getStaticPaths() {
 }
 
 const { data } = Astro.props;
+const path = '/' + Astro.params.slug;
+
+// Хлебные крошки: Главная → (родитель из nav) → текущая
+const parent = site.nav.find((item) => item.children?.some((c) => c.href === path));
+const breadcrumbs = [{ name: 'Главная', url: '/' }];
+if (parent) breadcrumbs.push({ name: parent.label, url: parent.href });
+breadcrumbs.push({ name: data.h1, url: path });
+
+// Service-схема услуги
+const serviceSchema = {
+  '@type': 'Service',
+  name: data.h1,
+  serviceType: data.h1,
+  provider: { '@id': site.url + '/#org' },
+  areaServed: { '@type': 'Country', name: 'Россия' },
+  url: new URL(path, site.url).href,
+  description: data.description,
+};
 ---
 
-<Base title={data.title} description={data.description}>
+<Base title={data.title} description={data.description} breadcrumbs={breadcrumbs} schema={[serviceSchema]}>
   <article class="section">
     <div class="container">
       <div class="page-head">
