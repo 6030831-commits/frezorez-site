@@ -23,8 +23,34 @@ const { contacts, nav } = site;
     </nav>
 
     <a href={contacts.phoneHref} class="btn btn-primary header-cta">{contacts.phone}</a>
+
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+
+<!-- Мобильное меню (ВНЕ <header>: backdrop-filter шапки ломает position:fixed у детей) -->
+<div class="mobile-menu" id="mobile-menu">
+    <nav class="mobile-nav" aria-label="Мобильная навигация">
+      {nav.map((item) => (
+        <div class="m-group">
+          <a href={item.href} class="m-link">{item.label}</a>
+          {item.children && (
+            <div class="m-children">
+              {item.children.map((child) => (
+                <a href={child.href} class="m-child">{child.label}</a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </nav>
+    <div class="mobile-cta">
+      <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Написать в Telegram</a>
+      <a href={contacts.phoneHref} class="btn btn-secondary btn-lg">{contacts.phone}</a>
+    </div>
+  </div>
 
 <style>
   .site-header {
@@ -38,12 +64,14 @@ const { contacts, nav } = site;
   .header-inner {
     height: 100%;
     display: flex; align-items: center; justify-content: space-between;
-    gap: var(--space-6);
+    gap: var(--space-4);
   }
   .brand {
     font-family: var(--font-display); font-weight: 900; font-size: 22px;
     letter-spacing: 0.02em; color: var(--text-primary);
   }
+
+  /* --- Десктоп-навигация --- */
   .nav { display: none; gap: var(--space-6); align-items: center; }
   .nav-item { position: relative; }
   .nav-link {
@@ -71,10 +99,70 @@ const { contacts, nav } = site;
   .nav-dropdown-link:hover { background: var(--bg-tertiary); color: var(--text-primary); }
   .header-cta { white-space: nowrap; }
 
-  @media (min-width: 1024px) {
-    .nav { display: flex; }
+  /* --- Бургер --- */
+  .nav-toggle {
+    display: inline-flex; flex-direction: column; justify-content: center;
+    gap: 5px; width: 44px; height: 44px; padding: 10px;
+    border: 0; background: transparent; cursor: pointer; margin-right: -10px;
   }
-  @media (max-width: 1023px) {
+  .nav-toggle span {
+    display: block; height: 2px; width: 24px; border-radius: 2px;
+    background: var(--text-primary);
+    transition: transform var(--duration-base) var(--ease-default), opacity var(--duration-fast);
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* --- Мобильное меню (оверлей под шапкой) --- */
+  .mobile-menu {
+    position: fixed; inset: 64px 0 0 0;
+    background: var(--bg-primary);
+    padding: var(--space-6) var(--pad-mobile) var(--space-12);
+    overflow-y: auto;
+    display: flex; flex-direction: column;
+    transform: translateX(100%); visibility: hidden;
+    transition: transform var(--duration-base) var(--ease-default), visibility var(--duration-base);
+    z-index: 40;
+  }
+  .mobile-menu.open { transform: translateX(0); visibility: visible; }
+  .m-group { border-bottom: 1px solid var(--border-subtle); padding: var(--space-2) 0; }
+  .m-link {
+    display: block; font-family: var(--font-display); font-weight: 800;
+    font-size: 20px; color: var(--text-primary); padding: var(--space-2) 0;
+  }
+  .m-children { display: flex; flex-direction: column; padding: 0 0 var(--space-2); }
+  .m-child { font-size: 15px; color: var(--text-secondary); padding: 9px 0 9px var(--space-4); }
+  .m-child:hover, .m-child:active { color: var(--accent-primary); }
+  .mobile-cta { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-8); }
+
+  /* --- Брейкпойнты --- */
+  @media (max-width: 639px) { .header-cta { display: none; } }
+  @media (min-width: 640px) and (max-width: 1023px) {
     .header-cta { padding: 10px 16px; font-size: 13px; }
   }
+  @media (min-width: 1024px) {
+    .nav { display: flex; }
+    .nav-toggle, .mobile-menu { display: none; }
+  }
 </style>
+
+<script is:inline>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    function set(open) {
+      menu.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Закрыть меню' : 'Меню');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    btn.addEventListener('click', function () {
+      set(!menu.classList.contains('open'));
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') set(false);
+    });
+  })();
+</script>
