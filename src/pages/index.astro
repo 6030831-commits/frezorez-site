@@ -4,16 +4,18 @@ import { site } from '../data/site.js';
 const { contacts, materials } = site;
 
 // ─── Логотипы клиентов ────────────────────────────────────────────────────────
+// Логотипы нормализованы: белый фон, впечённые поля обрезаны, единый отступ 6%
+// (оригиналы — в _backup-originals/partners-orig/).
 const partnerLogos = [
-  { name: 'Норникель',    src: '/content/partners/logo-ss-ru.jpg' },
-  { name: 'АндерСон',     src: '/content/partners/anderson.jpg' },
+  { name: 'Норникель',    src: '/content/partners/logo-ss-ru.png' },
+  { name: 'АндерСон',     src: '/content/partners/anderson.png' },
   { name: 'Азбука Вкуса', src: '/content/partners/azbyka.png' },
-  { name: 'ВКонтакте',    src: '/content/partners/vk.jpg' },
-  { name: 'ВкусВилл',     src: '/content/partners/vkus.jpg' },
-  { name: 'Swarovski',    src: '/content/partners/Swarovski-Logo.jpg' },
+  { name: 'ВКонтакте',    src: '/content/partners/vk.png' },
+  { name: 'ВкусВилл',     src: '/content/partners/vkus.png' },
+  { name: 'Swarovski',    src: '/content/partners/Swarovski-Logo.png' },
   { name: 'Росгвардия',   src: '/content/partners/rosgvard-logo-1.png' },
   { name: 'ОНФ',          src: '/content/partners/Onf-logo.svg.png' },
-  { name: 'Max Mara',     src: '/content/partners/Max-Mara-logo.jpg' },
+  { name: 'Max Mara',     src: '/content/partners/Max-Mara-logo.png' },
 ];
 
 // ─── Направления (хаб → /frezerovka-chpy) ────────────────────────────────────
@@ -284,25 +286,29 @@ const steps = [
   .logos-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-10) var(--space-4);
-    align-items: center;
-    justify-items: center;
+    gap: var(--space-3);
   }
-  @media (min-width: 768px) {
-    .logos-row {
-      display: flex; flex-wrap: wrap;
-      justify-content: center; align-items: center;
-      gap: var(--space-10) var(--space-6);
-    }
+  @media (min-width: 640px)  { .logos-row { grid-template-columns: repeat(5, 1fr); gap: var(--space-4); } }
+  @media (min-width: 1024px) { .logos-row { grid-template-columns: repeat(9, 1fr); } }
+
+  /* Светлая плашка под логотипом. У 6 из 9 логотипов белая подложка ВПЕЧЕНА в файл
+     (JPG без прозрачности), поэтому на тёмном фоне читаемо показать их можно только
+     на светлом: белая подложка сливается с плашкой, прозрачные PNG получают светлый фон. */
+  .logo-item {
+    display: flex; align-items: center; justify-content: center;
+    background: #FFFFFF;
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    height: 72px;
+    transition: transform var(--duration-base) var(--ease-default),
+                box-shadow var(--duration-base) var(--ease-default);
   }
-  .logo-item { display: flex; align-items: center; justify-content: center; }
+  .logo-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
   .logo-item img {
-    height: 88px; max-width: 160px; width: auto;
+    max-height: 100%; max-width: 100%;
+    width: auto; height: auto;
     object-fit: contain;
-    filter: grayscale(1) invert(1) opacity(0.45);
-    transition: filter var(--duration-base) var(--ease-default);
   }
-  .logo-item:hover img { filter: grayscale(1) invert(1) opacity(0.72); }
 
   /* ─── НАПРАВЛЕНИЯ ──────────────────────────────────────────────────────── */
   .dir-card { padding: 0; overflow: hidden; }
