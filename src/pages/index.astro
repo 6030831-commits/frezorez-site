@@ -117,10 +117,6 @@ const steps = [
   <!-- ② КЛИЕНТЫ ──────────────────────────────────────────────────────────── -->
   <section class="section clients-section">
     <div class="container">
-      <div class="clients-head">
-        <span class="eyebrow">Нам доверяют</span>
-        <span class="clients-note muted">Норникель, АндерСон, Азбука Вкуса, Swarovski и другие</span>
-      </div>
       <div class="logos-row">
         {partnerLogos.map((p) => (
           <div class="logo-item" title={p.name}>
@@ -276,12 +272,6 @@ const steps = [
 
   /* ─── КЛИЕНТЫ ──────────────────────────────────────────────────────────── */
   .clients-section { padding-block: var(--space-12); }
-  .clients-head {
-    display: flex; align-items: baseline; flex-wrap: wrap;
-    gap: var(--space-3) var(--space-6);
-    margin-bottom: var(--space-8);
-  }
-  .clients-note { font-size: 13px; }
 
   .logos-row {
     display: grid;
