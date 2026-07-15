@@ -240,7 +240,8 @@ const steps = [
 
 <style>
   /* ─── HERO ─────────────────────────────────────────────────────────────── */
-  .hero { padding-block: var(--space-16) var(--space-12); }
+  .hero { padding-block: var(--space-8) var(--space-12); }
+  @media (min-width: 900px) { .hero { padding-block: var(--space-16) var(--space-12); } }
 
   .hero-inner {
     display: grid;
@@ -257,15 +258,19 @@ const steps = [
   .hero-lead { margin-top: var(--space-6); max-width: 56ch; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-8); }
 
-  .hero-visual { display: none; }
-  @media (min-width: 900px) { .hero-visual { display: block; } }
+  /* Фото героя показываем и на мобильном — иначе первый экран без единого изображения.
+     На узких экранах ставим его ПЕРВЫМ (order), чтобы фото попадало в первый экран.
+     Порядок в DOM не меняется — заголовок остаётся первым для поиска. */
+  .hero-visual { display: block; order: -1; margin-bottom: var(--space-8); }
+  @media (min-width: 900px) { .hero-visual { order: 0; margin-bottom: 0; } }
   .hero-visual img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9; /* на мобильном ниже, чтобы в первый экран влезли и фото, и заголовок */
     object-fit: cover;
     border-radius: var(--radius-xl);
     border: 1px solid var(--border-subtle);
   }
+  @media (min-width: 900px) { .hero-visual img { aspect-ratio: 4 / 3; } }
 
   /* ─── КЛИЕНТЫ ──────────────────────────────────────────────────────────── */
   .clients-section { padding-block: var(--space-12); }
