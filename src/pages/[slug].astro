@@ -11,13 +11,15 @@ export function getStaticPaths() {
 }
 
 const { data } = Astro.props;
-const path = '/' + Astro.params.slug;
+const path = '/' + Astro.params.slug;              // без слэша — для матчинга nav
+const slashed = (p) => (p === '/' ? '/' : p.replace(/\/$/, '') + '/'); // канон. вид со слэшем
 
-// Хлебные крошки: Главная → (родитель из nav) → текущая
+// Хлебные крошки: Главная → (родитель из nav) → текущая.
+// Матчинг родителя — по бесслэшевому href (как в site.nav), а URL в разметке — со слэшем.
 const parent = site.nav.find((item) => item.children?.some((c) => c.href === path));
 const breadcrumbs = [{ name: 'Главная', url: '/' }];
-if (parent) breadcrumbs.push({ name: parent.label, url: parent.href });
-breadcrumbs.push({ name: data.h1, url: path });
+if (parent) breadcrumbs.push({ name: parent.label, url: slashed(parent.href) });
+breadcrumbs.push({ name: data.h1, url: slashed(path) });
 
 // Service-схема услуги
 const serviceSchema = {
@@ -26,7 +28,7 @@ const serviceSchema = {
   serviceType: data.h1,
   provider: { '@id': site.url + '/#org' },
   areaServed: { '@type': 'Country', name: 'Россия' },
-  url: new URL(path, site.url).href,
+  url: new URL(slashed(path), site.url).href,
   description: data.description,
 };
 ---

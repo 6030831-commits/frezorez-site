@@ -11,49 +11,49 @@
 
   <!-- Фрезеровка ЧПУ — хаб и материалы (P0, высокий приоритет) -->
   <url>
-    <loc>https://frezorez.ru/frezerovka-chpy</loc>
+    <loc>https://frezorez.ru/frezerovka-chpy/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/frezerovka-fanery</loc>
+    <loc>https://frezorez.ru/frezerovka-fanery/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/frezerovka-dereva</loc>
+    <loc>https://frezorez.ru/frezerovka-dereva/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/frezerovka-mdf</loc>
+    <loc>https://frezorez.ru/frezerovka-mdf/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/frezerovka-pvh</loc>
+    <loc>https://frezorez.ru/frezerovka-pvh/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/frezerovka-acryl</loc>
+    <loc>https://frezorez.ru/frezerovka-acryl/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/frezerovka-kompozita</loc>
+    <loc>https://frezorez.ru/frezerovka-kompozita/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/3d-frezerovka</loc>
+    <loc>https://frezorez.ru/3d-frezerovka/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -61,7 +61,7 @@
 
   <!-- Лазер CO2 -->
   <url>
-    <loc>https://frezorez.ru/lazernaja-rezka</loc>
+    <loc>https://frezorez.ru/lazernaja-rezka/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -69,31 +69,31 @@
 
   <!-- HoReCa и сувениры -->
   <url>
-    <loc>https://frezorez.ru/izgotovlenie-produkcii-iz-horeca</loc>
+    <loc>https://frezorez.ru/izgotovlenie-produkcii-iz-horeca/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/derevyannaya-posuda-dlya-barov-restoranov</loc>
+    <loc>https://frezorez.ru/derevyannaya-posuda-dlya-barov-restoranov/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/korobochki-penaly-iz-dereva</loc>
+    <loc>https://frezorez.ru/korobochki-penaly-iz-dereva/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/balansiry-nejrotrenazhery</loc>
+    <loc>https://frezorez.ru/balansiry-nejrotrenazhery/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/mebel-iz-fanery</loc>
+    <loc>https://frezorez.ru/mebel-iz-fanery/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -101,19 +101,19 @@
 
   <!-- Служебные страницы -->
   <url>
-    <loc>https://frezorez.ru/trebovaniya-k-maketam</loc>
+    <loc>https://frezorez.ru/trebovaniya-k-maketam/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/dostavka</loc>
+    <loc>https://frezorez.ru/dostavka/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/ypakovka</loc>
+    <loc>https://frezorez.ru/ypakovka/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
@@ -121,19 +121,19 @@
 
   <!-- NEW: P1 страницы -->
   <url>
-    <loc>https://frezorez.ru/o-nas</loc>
+    <loc>https://frezorez.ru/o-nas/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/portfolio</loc>
+    <loc>https://frezorez.ru/portfolio/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/kontakty</loc>
+    <loc>https://frezorez.ru/kontakty/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
@@ -141,13 +141,13 @@
 
   <!-- P3: Мебель и шезлонги -->
   <url>
-    <loc>https://frezorez.ru/mebel-dlya-meropriyatij</loc>
+    <loc>https://frezorez.ru/mebel-dlya-meropriyatij/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://frezorez.ru/shezlongi-iz-dereva</loc>
+    <loc>https://frezorez.ru/shezlongi-iz-dereva/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
