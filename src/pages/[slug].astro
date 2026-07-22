@@ -31,9 +31,23 @@ const serviceSchema = {
   url: new URL(slashed(path), site.url).href,
   description: data.description,
 };
+
+// FAQPage-схема (если у страницы есть блок вопросов) — расширенные сниппеты + AI-поиск
+const faqSchema = data.faq?.length
+  ? {
+      '@type': 'FAQPage',
+      mainEntity: data.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
+
+const pageSchema = faqSchema ? [serviceSchema, faqSchema] : [serviceSchema];
 ---
 
-<Base title={data.title} description={data.description} breadcrumbs={breadcrumbs} schema={[serviceSchema]}>
+<Base title={data.title} description={data.description} breadcrumbs={breadcrumbs} schema={pageSchema}>
   <article class="section">
     <div class="container">
       <div class="page-head">
@@ -47,9 +61,24 @@ const serviceSchema = {
           if (block.type === 'h2') return <h2>{block.text}</h2>;
           if (block.type === 'h3') return <h3>{block.text}</h3>;
           if (block.type === 'ul') return <ul>{block.items.map((i) => <li>{i}</li>)}</ul>;
+          if (block.type === 'links') return <ul class="link-list">{block.items.map((i) => <li><a href={i.href}>{i.label}</a></li>)}</ul>;
           return <p>{block.text}</p>;
         })}
       </div>
+
+      {data.faq?.length && (
+        <section class="faq">
+          <h2>Частые вопросы</h2>
+          <div class="faq-list">
+            {data.faq.map((f) => (
+              <details class="faq-item">
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div class="page-cta card card-featured">
         <h3>Обсудить заказ</h3>
@@ -70,4 +99,23 @@ const serviceSchema = {
   .page-cta { margin-top: var(--space-16); max-width: 720px; }
   .page-cta h3 { margin-bottom: var(--space-2); }
   .page-cta-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+
+  /* FAQ */
+  .faq { margin-top: var(--space-16); max-width: 760px; }
+  .faq > h2 { margin-bottom: var(--space-6); }
+  .faq-list { display: flex; flex-direction: column; gap: var(--space-2); }
+  .faq-item {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+    padding: var(--space-4) var(--space-6);
+  }
+  .faq-item summary {
+    cursor: pointer; font-weight: 600; list-style: none;
+    display: flex; justify-content: space-between; align-items: center; gap: var(--space-4);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; color: var(--accent-primary); font-size: 1.4em; line-height: 1; }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p { margin-top: var(--space-3); color: var(--text-secondary); }
 </style>
