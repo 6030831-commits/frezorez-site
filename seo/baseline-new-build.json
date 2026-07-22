@@ -1,8 +1,8 @@
 {
-  "/3d-frezerovka": {
+  "/3d-frezerovka/": {
     "title": "FREZOREZ.RU — 3D фрезеровка на ЧПУ в Москве",
     "description": "3D-фрезеровка на станке с ЧПУ в Москве: резной декор, панно, эмблемы, клише. Точность до 0.25 мм. Моделируем в Rhino/3ds Max, режем в дереве, МДФ, металле.",
-    "canonical": "https://frezorez.ru/3d-frezerovka",
+    "canonical": "https://www.frezorez.ru/3d-frezerovka/",
     "robots": "index,follow",
     "h1": [
       "3D-фрезеровка"
@@ -14,10 +14,10 @@
       "Service"
     ]
   },
-  "/balansiry-nejrotrenazhery": {
+  "/balansiry-nejrotrenazhery/": {
     "title": "Балансиры и нейротренажёры",
     "description": "Балансиры и нейротренажёры из берёзовой фанеры для развития детей. Своё столярное производство, консультируют нейропсихологи. Безопасное эко-покрытие.",
-    "canonical": "https://frezorez.ru/balansiry-nejrotrenazhery",
+    "canonical": "https://www.frezorez.ru/balansiry-nejrotrenazhery/",
     "robots": "index,follow",
     "h1": [
       "Балансиры и нейротренажёры"
@@ -29,10 +29,10 @@
       "Service"
     ]
   },
-  "/derevyannaya-posuda-dlya-barov-restoranov": {
+  "/derevyannaya-posuda-dlya-barov-restoranov/": {
     "title": "Деревянная посуда для баров и ресторанов",
     "description": "Деревянная посуда для баров и ресторанов на заказ: доски для подачи, менажницы, винницы, органайзеры, таблички RESERVED. По вашим размерам, с гравировкой.",
-    "canonical": "https://frezorez.ru/derevyannaya-posuda-dlya-barov-restoranov",
+    "canonical": "https://www.frezorez.ru/derevyannaya-posuda-dlya-barov-restoranov/",
     "robots": "index,follow",
     "h1": [
       "Деревянная посуда для баров и ресторанов"
@@ -44,10 +44,10 @@
       "Service"
     ]
   },
-  "/dostavka": {
+  "/dostavka/": {
     "title": "FREZOREZ.RU — доставка",
     "description": "Доставка изделий по Москве и России: курьерские службы GettDelivery, Dostavista, Грузовичкоф. Самовывоз — Москва, ул. Буракова, 6.",
-    "canonical": "https://frezorez.ru/dostavka",
+    "canonical": "https://www.frezorez.ru/dostavka/",
     "robots": "index,follow",
     "h1": [
       "Доставка"
@@ -59,10 +59,10 @@
       "Service"
     ]
   },
-  "/frezerovka-acryl": {
+  "/frezerovka-acryl/": {
     "title": "FREZOREZ.RU — фрезеровка акрила на станке с ЧПУ в Москве",
     "description": "Фрезеровка акрила и оргстекла на станке с ЧПУ в Москве: световые буквы, витрины, декор. Полировка кромки до «стеклянной» для LED-подсветки торца.",
-    "canonical": "https://frezorez.ru/frezerovka-acryl",
+    "canonical": "https://www.frezorez.ru/frezerovka-acryl/",
     "robots": "index,follow",
     "h1": [
       "Фрезеровка акрила и оргстекла"
@@ -74,10 +74,10 @@
       "Service"
     ]
   },
-  "/frezerovka-chpy": {
+  "/frezerovka-chpy/": {
     "title": "FREZOREZ.RU — фрезеровка ЧПУ в Москве",
     "description": "Услуги фрезеровки на станках с ЧПУ. Рабочее поле 2.2×4.2 м, точность 0.025 мм.",
-    "canonical": "https://frezorez.ru/frezerovka-chpy",
+    "canonical": "https://www.frezorez.ru/frezerovka-chpy/",
     "robots": "index,follow",
     "h1": [
       "Фрезеровка ЧПУ"
@@ -89,10 +89,10 @@
       "Service"
     ]
   },
-  "/frezerovka-dereva": {
+  "/frezerovka-dereva/": {
     "title": "FREZOREZ.RU — фрезеровка дерева ЧПУ в Москве",
     "description": "Фрезеровка дерева на станке с ЧПУ в Москве: декор мебели, 3D-панно, сувенирка, реставрация. Работаем с ценными породами. Пришлите чертёж — оценим.",
-    "canonical": "https://frezorez.ru/frezerovka-dereva",
+    "canonical": "https://www.frezorez.ru/frezerovka-dereva/",
     "robots": "index,follow",
     "h1": [
       "Фрезеровка дерева"
@@ -104,10 +104,10 @@
       "Service"
     ]
   },
-  "/frezerovka-fanery": {
+  "/frezerovka-fanery/": {
     "title": "FREZOREZ.RU — фрезеровка фанеры на станке с ЧПУ в Москве",
     "description": "Фрезеровка фанеры на станке с ЧПУ в Москве: фигурный раскрой, пазы, гравировка. Рабочее поле 2.2×4.2 м — берём листы целиком. Расчёт по чертежу или DXF.",
-    "canonical": "https://frezorez.ru/frezerovka-fanery",
+    "canonical": "https://www.frezorez.ru/frezerovka-fanery/",
     "robots": "index,follow",
     "h1": [
       "Фрезеровка фанеры"
@@ -119,10 +119,10 @@
       "Service"
     ]
   },
-  "/frezerovka-kompozita": {
+  "/frezerovka-kompozita/": {
     "title": "FREZOREZ.RU — фрезеровка на ЧПУ композитных материалов",
     "description": "Фрезеровка композита (DIBOND, ALUCOBOND) на ЧПУ в Москве: фасадные кассеты, рекламные короба. Поле 2.1×4.1 м — целые листы. Скидки до 60% на объём.",
-    "canonical": "https://frezorez.ru/frezerovka-kompozita",
+    "canonical": "https://www.frezorez.ru/frezerovka-kompozita/",
     "robots": "index,follow",
     "h1": [
       "Фрезеровка композитных материалов"
@@ -134,10 +134,10 @@
       "Service"
     ]
   },
-  "/frezerovka-mdf": {
+  "/frezerovka-mdf/": {
     "title": "FREZOREZ.RU — фрезеровка МДФ в Москве",
     "description": "Фрезеровка МДФ на ЧПУ в Москве: мебельные фасады с рельефом, 3D-панели, объёмные буквы под покраску. Красим по RAL. Фасады от 3000 ₽/кв.м с материалом.",
-    "canonical": "https://frezorez.ru/frezerovka-mdf",
+    "canonical": "https://www.frezorez.ru/frezerovka-mdf/",
     "robots": "index,follow",
     "h1": [
       "Фрезеровка МДФ"
@@ -149,10 +149,10 @@
       "Service"
     ]
   },
-  "/frezerovka-pvh": {
+  "/frezerovka-pvh/": {
     "title": "FREZOREZ.RU — фрезеровка на станке ЧПУ ПВХ",
     "description": "Фрезеровка ПВХ на станке с ЧПУ в Москве: объёмные буквы, таблички, корпусные детали. Чистая кромка без оплавления — подбираем режим под марку и толщину.",
-    "canonical": "https://frezorez.ru/frezerovka-pvh",
+    "canonical": "https://www.frezorez.ru/frezerovka-pvh/",
     "robots": "index,follow",
     "h1": [
       "Фрезеровка ПВХ"
@@ -167,7 +167,7 @@
   "/": {
     "title": "FREZOREZ.RU — фрезеровка на ЧПУ в Москве",
     "description": "Столярное производство в Москве: ЧПУ-фрезеровка, лазерная резка, 3D. Работаем по чертежам с 2016 года.",
-    "canonical": "https://frezorez.ru/",
+    "canonical": "https://www.frezorez.ru/",
     "robots": "index,follow",
     "h1": [
       "Воплощаем идеив дереве и металле"
@@ -177,10 +177,10 @@
       "WebSite"
     ]
   },
-  "/izgotovlenie-produkcii-iz-horeca": {
+  "/izgotovlenie-produkcii-iz-horeca/": {
     "title": "Изготовление продукции HoReCa",
     "description": "Изготовление продукции для HoReCa из дерева и фанеры: доски для подачи, менюхолдеры, подставки. Эко-обработка маслом и воском, гравировка логотипа заведения.",
-    "canonical": "https://frezorez.ru/izgotovlenie-produkcii-iz-horeca",
+    "canonical": "https://www.frezorez.ru/izgotovlenie-produkcii-iz-horeca/",
     "robots": "index,follow",
     "h1": [
       "Изготовление продукции HoReCa"
@@ -192,10 +192,10 @@
       "Service"
     ]
   },
-  "/kontakty": {
+  "/kontakty/": {
     "title": "Контакты — FREZOREZ.RU, Москва, ул. Буракова 6с2",
     "description": "Контакты FREZOREZ: +7 925 556-01-66, info@frezorez.ru, Москва ул. Буракова 6 стр. 2. Telegram, WhatsApp, ВКонтакте.",
-    "canonical": "https://frezorez.ru/kontakty",
+    "canonical": "https://www.frezorez.ru/kontakty/",
     "robots": "index,follow",
     "h1": [
       "Как с нами связаться"
@@ -206,10 +206,10 @@
       "BreadcrumbList"
     ]
   },
-  "/korobochki-penaly-iz-dereva": {
+  "/korobochki-penaly-iz-dereva/": {
     "title": "Коробочки и пеналы из дерева",
     "description": "Коробочки и пеналы из дерева на заказ: футляры для алкоголя, подарочная упаковка для маркетплейсов, короба для цветов. Брендирование гравировкой и УФ-печатью.",
-    "canonical": "https://frezorez.ru/korobochki-penaly-iz-dereva",
+    "canonical": "https://www.frezorez.ru/korobochki-penaly-iz-dereva/",
     "robots": "index,follow",
     "h1": [
       "Коробочки и пеналы из дерева"
@@ -221,10 +221,10 @@
       "Service"
     ]
   },
-  "/lazernaja-rezka": {
+  "/lazernaja-rezka/": {
     "title": "FREZOREZ.RU — лазерная резка фанеры и дерева (CO2) в Москве",
     "description": "Лазерная резка и гравировка фанеры, оргстекла, кожи, резины на CO2-станке.",
-    "canonical": "https://frezorez.ru/lazernaja-rezka",
+    "canonical": "https://www.frezorez.ru/lazernaja-rezka/",
     "robots": "index,follow",
     "h1": [
       "Лазерная резка и гравировка (CO2)"
@@ -236,10 +236,10 @@
       "Service"
     ]
   },
-  "/mebel-dlya-meropriyatij": {
+  "/mebel-dlya-meropriyatij/": {
     "title": "Мебель для мероприятий и HoReCa на заказ | FREZOREZ",
     "description": "Брендированная деревянная мебель для мероприятий, отелей и пляжей: шезлонги, складная мебель, пресс-воллы. Производство с ЧПУ и лазером в Москве.",
-    "canonical": "https://frezorez.ru/mebel-dlya-meropriyatij",
+    "canonical": "https://www.frezorez.ru/mebel-dlya-meropriyatij/",
     "robots": "index,follow",
     "h1": [
       "Мебель для мероприятийс логотипом вашего бренда"
@@ -250,10 +250,10 @@
       "BreadcrumbList"
     ]
   },
-  "/mebel-iz-fanery": {
+  "/mebel-iz-fanery/": {
     "title": "FREZOREZ.RU — создание мебели из фанеры",
     "description": "Мебель из фанеры на заказ в Москве: параметрические изделия, фрезеровка и сборка. Эко-покрытие — масло, воск, морилка. Срок изготовления от 7 рабочих дней.",
-    "canonical": "https://frezorez.ru/mebel-iz-fanery",
+    "canonical": "https://www.frezorez.ru/mebel-iz-fanery/",
     "robots": "index,follow",
     "h1": [
       "Мебель из фанеры"
@@ -265,10 +265,10 @@
       "Service"
     ]
   },
-  "/o-nas": {
+  "/o-nas/": {
     "title": "О нас — FREZOREZ.RU, столярное производство в Москве с 2016",
     "description": "Столярное производство FREZOREZ в Москве с 2016 года: ЧПУ-фрезеровка, лазерная резка, сварка, покраска, сборка. Работаем по чертежам.",
-    "canonical": "https://frezorez.ru/o-nas",
+    "canonical": "https://www.frezorez.ru/o-nas/",
     "robots": "index,follow",
     "h1": [
       "Воплощаем идеи в дереве и металле"
@@ -279,10 +279,10 @@
       "BreadcrumbList"
     ]
   },
-  "/portfolio": {
+  "/portfolio/": {
     "title": "Портфолио — FREZOREZ.RU, примеры работ производства",
     "description": "Портфолио производства FREZOREZ: 123 фото — ЧПУ-фрезеровка, 3D, HoReCa, мебель, композит. Реальные работы.",
-    "canonical": "https://frezorez.ru/portfolio",
+    "canonical": "https://www.frezorez.ru/portfolio/",
     "robots": "index,follow",
     "h1": [
       "Наши работы"
@@ -293,10 +293,10 @@
       "BreadcrumbList"
     ]
   },
-  "/shezlongi-iz-dereva": {
+  "/shezlongi-iz-dereva/": {
     "title": "Деревянные шезлонги с логотипом на заказ | FREZOREZ",
     "description": "Производство брендированных деревянных шезлонгов из лиственницы и бука: складной механизм, нанесение логотипа лазером, расчёт по партии. Москва, с 2016.",
-    "canonical": "https://frezorez.ru/shezlongi-iz-dereva",
+    "canonical": "https://www.frezorez.ru/shezlongi-iz-dereva/",
     "robots": "index,follow",
     "h1": [
       "Деревянные шезлонги с вашим логотипом"
@@ -307,10 +307,10 @@
       "BreadcrumbList"
     ]
   },
-  "/trebovaniya-k-maketam": {
+  "/trebovaniya-k-maketam/": {
     "title": "FREZOREZ.RU — требования к макетам для фрезеровки",
     "description": "Требования к макетам для фрезеровки: форматы CDR, PDF, DWG, STL; масштаб 1:1, замкнутые контуры, кривые, волосяная линия. Пришлите файл — рассчитаем стоимость.",
-    "canonical": "https://frezorez.ru/trebovaniya-k-maketam",
+    "canonical": "https://www.frezorez.ru/trebovaniya-k-maketam/",
     "robots": "index,follow",
     "h1": [
       "Требования к макетам"
@@ -322,10 +322,10 @@
       "Service"
     ]
   },
-  "/ypakovka": {
+  "/ypakovka/": {
     "title": "FREZOREZ.RU — услуги упаковки",
     "description": "Услуги упаковки готовых изделий: пузырчатая плёнка, картонные коробки с прокладками, деревянные ящики под крупногабарит. Маркировка «хрупко», доставка курьером.",
-    "canonical": "https://frezorez.ru/ypakovka",
+    "canonical": "https://www.frezorez.ru/ypakovka/",
     "robots": "index,follow",
     "h1": [
       "Упаковка"
