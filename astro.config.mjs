@@ -8,7 +8,10 @@ import { defineConfig } from 'astro/config';
 // чистые URL работают без доступа к конфигу nginx.
 // Старые бесслэшевые адреса сохраняют вес через штатный 301 nginx на слэш.
 export default defineConfig({
-  site: 'https://frezorez.ru',
+  // Главное зеркало = www: сайт исторически проиндексирован Яндексом как
+  // www.frezorez.ru (в Вебмастере заведён только www). Держим canonical на www,
+  // чтобы не мигрировать зеркало и не терять индексацию.
+  site: 'https://www.frezorez.ru',
   trailingSlash: 'always',
   build: {
     format: 'directory',

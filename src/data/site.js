@@ -4,7 +4,7 @@
 export const site = {
   name: 'FREZOREZ',
   domain: 'frezorez.ru',
-  url: 'https://frezorez.ru',
+  url: 'https://www.frezorez.ru', // главное зеркало = www (историческая индексация Яндекса)
   tagline: 'Столярное производство в Москве с 2016 года',
 
   // SEO / верификация (вшиты в Base.astro)
