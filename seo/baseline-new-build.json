@@ -11,7 +11,8 @@
       "LocalBusiness",
       "WebSite",
       "BreadcrumbList",
-      "Service"
+      "Service",
+      "FAQPage"
     ]
   },
   "/balansiry-nejrotrenazhery/": {
@@ -26,7 +27,8 @@
       "LocalBusiness",
       "WebSite",
       "BreadcrumbList",
-      "Service"
+      "Service",
+      "FAQPage"
     ]
   },
   "/derevyannaya-posuda-dlya-barov-restoranov/": {
@@ -86,7 +88,8 @@
       "LocalBusiness",
       "WebSite",
       "BreadcrumbList",
-      "Service"
+      "Service",
+      "FAQPage"
     ]
   },
   "/frezerovka-dereva/": {
@@ -101,7 +104,8 @@
       "LocalBusiness",
       "WebSite",
       "BreadcrumbList",
-      "Service"
+      "Service",
+      "FAQPage"
     ]
   },
   "/frezerovka-fanery/": {
@@ -233,7 +237,8 @@
       "LocalBusiness",
       "WebSite",
       "BreadcrumbList",
-      "Service"
+      "Service",
+      "FAQPage"
     ]
   },
   "/mebel-dlya-meropriyatij/": {
@@ -262,7 +267,8 @@
       "LocalBusiness",
       "WebSite",
       "BreadcrumbList",
-      "Service"
+      "Service",
+      "FAQPage"
     ]
   },
   "/o-nas/": {
