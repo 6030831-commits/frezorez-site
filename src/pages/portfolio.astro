@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site } from '../data/site.js';
+import { site, tgHref } from '../data/site.js';
 import fs   from 'node:fs';
 import path from 'node:path';
 const { contacts } = site;
@@ -32,6 +32,19 @@ function scanDeep(relDir, cat, alt) {
 }
 
 const photos = [
+  // Съёмки из iCloud (2026-08), сгруппированы по направлениям
+  ...scanFlat('images/w-frezerovka',   'cnc',       'Фрезеровка на ЧПУ'),
+  ...scanFlat('images/w-lazer',        'lazer',     'Лазерная резка'),
+  ...scanFlat('images/w-reznye',       'cnc',       'Резные панели, фрезеровка дерева'),
+  ...scanFlat('images/w-3d',           '3d',        '3D-фрезеровка, объёмный рельеф'),
+  ...scanFlat('images/w-fanera',       'cnc',       'Фрезеровка фанеры'),
+  ...scanFlat('images/w-derevo',       'cnc',       'Фрезеровка дерева'),
+  ...scanFlat('images/w-mdf',          'cnc',       'Фрезеровка МДФ'),
+  ...scanFlat('images/w-pvh',          'cnc',       'Фрезеровка ПВХ'),
+  ...scanFlat('images/w-yashiki',      'mebel',     'Ящики, подиумы и кашпо из фанеры'),
+  ...scanFlat('images/w-igrovoy',      'mebel',     'Игровой комплекс из фанеры'),
+  ...scanFlat('images/w-posuda',       'horeca',    'Деревянная посуда для HoReCa'),
+  ...scanFlat('images/w-korobki',      'horeca',    'Подарочные коробки из дерева'),
   ...scanFlat('images/chpy',           'cnc',       'Фрезеровка ЧПУ'),
   ...scanFlat('images/fanera',         'cnc',       'Фрезеровка фанеры'),
   ...scanFlat('images/derevo',         'cnc',       'Фрезеровка дерева'),
@@ -53,8 +66,10 @@ const count = photos.reduce((acc, p) => { acc[p.cat] = (acc[p.cat] || 0) + 1; re
 const filters = [
   { id: 'all',       label: `Все работы — ${photos.length}` },
   { id: 'cnc',       label: `Фрезеровка — ${count.cnc ?? 0}` },
+  { id: 'lazer',     label: `Лазер — ${count.lazer ?? 0}` },
   { id: '3d',        label: `3D — ${count['3d'] ?? 0}` },
-  { id: 'horeca',    label: `HoReCa — ${count.horeca ?? 0}` },
+  { id: 'mebel',     label: `Мебель — ${count.mebel ?? 0}` },
+  { id: 'horeca',    label: `HoReCa и посуда — ${count.horeca ?? 0}` },
   { id: 'materials', label: `Материалы — ${count.materials ?? 0}` },
   { id: 'uploads',   label: `Портфолио — ${count.uploads ?? 0}` },
 ];
@@ -120,7 +135,8 @@ const filters = [
         <h2>Хотите такое же?</h2>
         <p class="lead">Пришлите чертёж или опишите задачу — рассчитаем и подскажем.</p>
         <div class="cta-row">
-          <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Telegram</a>
+          <a href={tgHref()} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Telegram</a>
+          {contacts.maxHref && <a href={contacts.maxHref} class="btn btn-secondary btn-lg" target="_blank" rel="noopener">MAX</a>}
           <a href={contacts.phoneHref} class="btn btn-secondary btn-lg">{contacts.phone}</a>
         </div>
       </div>

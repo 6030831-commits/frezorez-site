@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site } from '../data/site.js';
+import { site, tgHref } from '../data/site.js';
 const { contacts } = site;
 
 // Направления уровня 2 — pagemap.md
@@ -8,28 +8,28 @@ const products = [
   {
     title: 'Шезлонги с логотипом',
     text: 'Деревянные шезлонги из лиственницы/бука с лазерной гравировкой бренда. Нагрузка до 120 кг, 3 положения спинки, складной.',
-    href: '/shezlongi-iz-dereva',
+    href: '/shezlongi-iz-dereva/',
     badge: null,
     active: true,
   },
   {
     title: 'Складная мебель',
     text: 'Столики, стулья, скамейки для мероприятий — единый брендированный комплект. Лёгкий монтаж и хранение.',
-    href: '/skladnaya-mebel',
+    href: '/skladnaya-mebel/',
     badge: 'Скоро',
     active: false,
   },
   {
     title: 'Пресс-воллы и фотозоны',
     text: 'Конструкции для брендирования пространства: пресс-воллы, рекламные стены, навигация на мероприятия.',
-    href: '/pressvoly',
+    href: '/pressvoly/',
     badge: 'Скоро',
     active: false,
   },
   {
     title: 'Брендированная мебель под заказ',
     text: 'Кастомные изделия по чертежу заказчика: любые размеры, любой материал, любой логотип.',
-    href: '/brendirovannaya-mebel',
+    href: '/brendirovannaya-mebel/',
     badge: 'Под заказ',
     active: false,
   },
@@ -59,7 +59,8 @@ const usps = [
         брендируем своим лазером. Не перекупщики: производитель напрямую.
       </p>
       <div class="hero-actions">
-        <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Написать в Telegram</a>
+        <a href={tgHref('mebel-dlya-meropriyatij')} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Написать в Telegram</a>
+        {contacts.maxHref && <a href={contacts.maxHref} class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Написать в MAX</a>}
         <a href={contacts.phoneHref} class="btn btn-ghost btn-lg">{contacts.phone}</a>
       </div>
     </div>
@@ -115,8 +116,8 @@ const usps = [
         ))}
       </div>
       <div class="usp-links">
-        <a href="/frezerovka-chpy" class="inline-link">ЧПУ-фрезеровка →</a>
-        <a href="/lazernaja-rezka" class="inline-link">Лазерная гравировка →</a>
+        <a href="/frezerovka-chpy/" class="inline-link">ЧПУ-фрезеровка →</a>
+        <a href="/lazernaja-rezka/" class="inline-link">Лазерная гравировка →</a>
       </div>
     </div>
   </section>
@@ -153,9 +154,10 @@ const usps = [
         <h2>Обсудим вашу задачу?</h2>
         <p class="lead">Пришлите ТЗ или опишите задачу: модель, партия, логотип. Рассчитаем стоимость и сроки в рабочий день.</p>
         <div class="cta-actions">
-          <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Telegram</a>
+          <a href={tgHref('mebel-dlya-meropriyatij')} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Telegram</a>
+          {contacts.maxHref && <a href={contacts.maxHref} class="btn btn-secondary btn-lg" target="_blank" rel="noopener">MAX</a>}
           <a href={contacts.phoneHref} class="btn btn-secondary btn-lg">{contacts.phone}</a>
-          <a href="/shezlongi-iz-dereva" class="btn btn-ghost btn-lg">Шезлонги с логотипом →</a>
+          <a href="/shezlongi-iz-dereva/" class="btn btn-ghost btn-lg">Шезлонги с логотипом →</a>
         </div>
       </div>
     </div>

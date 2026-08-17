@@ -1,22 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site } from '../data/site.js';
+import { site, tgHref } from '../data/site.js';
 const { contacts, materials } = site;
 
 // ─── Логотипы клиентов ────────────────────────────────────────────────────────
 // Логотипы нормализованы: белый фон, впечённые поля обрезаны, единый отступ 6%
-// (оригиналы — в _backup-originals/partners-orig/).
-const partnerLogos = [
-  { name: 'Норникель',    src: '/content/partners/logo-ss-ru.png' },
-  { name: 'АндерСон',     src: '/content/partners/anderson.png' },
-  { name: 'Азбука Вкуса', src: '/content/partners/azbyka.png' },
-  { name: 'ВКонтакте',    src: '/content/partners/vk.png' },
-  { name: 'ВкусВилл',     src: '/content/partners/vkus.png' },
-  { name: 'Swarovski',    src: '/content/partners/Swarovski-Logo.png' },
-  { name: 'Росгвардия',   src: '/content/partners/rosgvard-logo-1.png' },
-  { name: 'ОНФ',          src: '/content/partners/Onf-logo.svg.png' },
-  { name: 'Max Mara',     src: '/content/partners/Max-Mara-logo.png' },
-];
+// (оригиналы — в _backup-originals/partners-orig/). Список живёт в site.js —
+// он общий с /o-nas/, дублировать его здесь нельзя (так и разъехались расширения).
+const partnerLogos = site.clientLogos;
 
 // ─── Направления (хаб → /frezerovka-chpy) ────────────────────────────────────
 const directions = [
@@ -24,42 +15,74 @@ const directions = [
     eyebrow: 'Листовые неметаллы',
     title: 'Фрезеровка ЧПУ',
     text: 'Фанера, дерево, МДФ, ЛДСП, акрил, ПВХ, АКП. Рабочее поле 2.2×4.2 м, точность 0.025 мм.',
-    href: '/frezerovka-chpy',
-    img: '/images/chpy/1.jpg',
+    href: '/frezerovka-chpy/',
+    img: '/images/covers/frezerovka-cover.jpg',
   },
   {
     eyebrow: 'CO2 · неметаллы',
     title: 'Лазерная резка',
     text: 'Резка и гравировка фанеры, оргстекла, кожи, резины. Поле 1300×900 мм, стол до 600 мм.',
-    href: '/lazernaja-rezka',
-    img: '/images/kompozit/2.jpg',
+    href: '/lazernaja-rezka/',
+    img: '/images/covers/lazer-cover.jpg',
   },
   {
     eyebrow: 'Рельеф · декор',
     title: '3D-фрезеровка',
     text: 'Панно, резной декор для классических интерьеров, эмблемы. Точность до 0.25 мм.',
-    href: '/3d-frezerovka',
-    img: '/images/3d/1.jpg',
+    href: '/3d-frezerovka/',
+    img: '/images/covers/3d-card.jpg',
   },
 ];
 
 // ─── Примеры работ (факты из CONTENT.md, без выдуманных метрик) ───────────────
 const cases = [
   {
+    eyebrow: 'Фанера · Серийный заказ',
+    title: 'Аксессуары для баров и ресторанов',
+    text: 'Доски для подачи, обложки меню, коробочки для чеков, таблички RESERVED — серийно, с лазерной гравировкой логотипа. Покрытие только натуральными маслами и пчелиным воском.',
+    tags: ['Фанера', 'ЧПУ + Лазер', 'HoReCa'],
+    img: '/images/covers/posuda-cover.jpg',
+    href: '/izgotovlenie-produkcii-iz-horeca/',
+  },
+  {
+    eyebrow: 'МДФ · Интерьер ресторана',
+    title: 'Ажурные панели для ресторана',
+    text: 'Комплект резных панелей для зала ресторана узбекской кухни: фрезеровка орнамента на МДФ, покраска и монтаж по месту. Ажур задаёт восточный характер интерьера.',
+    tags: ['МДФ', 'Фрезеровка', 'Интерьер'],
+    img: '/images/covers/reznye-cover.jpg',
+    href: '/frezerovka-dereva/',
+  },
+  {
+    eyebrow: 'Фанера · Для детей',
+    title: 'Игровой комплекс для детского сада',
+    text: 'Двухъярусный игровой комплекс из берёзовой фанеры: платформа-чердак, лестница, декоративные окна-иллюминаторы. Все кромки скруглены и отшлифованы — безопасно для детей.',
+    tags: ['Фанера', 'Мебель', 'Дети'],
+    img: '/images/covers/igrovoy-cover.jpg',
+    href: '/mebel-iz-fanery/',
+  },
+  {
+    eyebrow: 'Фанера · Упаковка',
+    title: 'Деревянные коробки под подарочные наборы',
+    text: 'Партия коробок и лотков из фанеры под подарочную упаковку и наборы: аккуратная реечная сборка, чистая кромка, штабелируются. Готовы под брендирование гравировкой.',
+    tags: ['Фанера', 'Упаковка', 'Серия'],
+    img: '/images/covers/korobki-cover.jpg',
+    href: '/korobochki-penaly-iz-dereva/',
+  },
+  {
+    eyebrow: 'Дерево · Интерьер',
+    title: 'Кашпо с реечным экраном для озеленения',
+    text: 'Деревянное кашпо для озеленения интерьера: верхний короб под растения и декоративная реечная решётка, закрывающая радиатор. Массив с брашировкой и защитным покрытием.',
+    tags: ['Дерево', 'Кашпо', 'Интерьер'],
+    img: '/images/covers/yaschiki-cover.jpg',
+    href: '/yaschiki-podiumy-kashpo/',
+  },
+  {
     eyebrow: 'Дерево · Индивидуальный заказ',
     title: 'Резной декор по мотивам старинной мебели',
     text: 'Скопировали элемент декора антикварного шкафа: сняли размеры с оригинала, построили 3D-модель в Rhino 3D, изготовили деталь в точности. Материал — ясень, отделка шёлковым маслом с тонировкой.',
     tags: ['Дерево', '3D-фрезеровка', 'Реставрация'],
     img: '/images/3d/2.jpg',
-    href: '/3d-frezerovka',
-  },
-  {
-    eyebrow: 'Фанера · Серийный заказ',
-    title: 'Аксессуары для баров и ресторанов',
-    text: 'Доски для подачи, обложки меню, коробочки для чеков, таблички RESERVED — серийно, с лазерной гравировкой логотипа. Покрытие только натуральными маслами и пчелиным воском.',
-    tags: ['Фанера', 'ЧПУ + Лазер', 'HoReCa'],
-    img: '/images/horeca/2.jpg',
-    href: '/izgotovlenie-produkcii-iz-horeca',
+    href: '/3d-frezerovka/',
   },
 ];
 
@@ -89,8 +112,8 @@ const steps = [
 ---
 
 <Base
-  title="FREZOREZ.RU — фрезеровка на ЧПУ в Москве"
-  description="Столярное производство в Москве: ЧПУ-фрезеровка, лазерная резка, 3D. Работаем по чертежам с 2016 года."
+  title="FREZOREZ — фрезеровка на ЧПУ, лазерная резка и 3D в Москве"
+  description="Столярное производство в Москве с 2016 года: ЧПУ-фрезеровка, лазерная резка, 3D-фрезеровка и сборка по вашим чертежам. Фрезеруем все материалы, кроме железа. Расчёт бесплатно."
 >
 
   <!-- ① HERO ─────────────────────────────────────────────────────────────── -->
@@ -104,12 +127,15 @@ const steps = [
           Фрезеруем любые материалы, кроме железа — железо режем лазером.
         </p>
         <div class="hero-actions">
-          <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Написать в Telegram</a>
+          <a href={tgHref()} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Написать в Telegram</a>
+          {contacts.maxHref && <a href={contacts.maxHref} class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Написать в MAX</a>}
           <a href={contacts.phoneHref} class="btn btn-ghost btn-lg">{contacts.phone}</a>
+          <a href={contacts.emailHref} class="btn btn-primary btn-lg">{contacts.email}</a>
         </div>
+        <p class="hero-mail">Пришлите чертёж на почту — рассчитаем стоимость и сроки.</p>
       </div>
       <div class="hero-visual">
-        <img src="/images/frezorez.jpg" alt="Производство FREZOREZ, Москва" loading="eager" />
+        <img src="/images/works/frezerovka/fedor-01.jpg" alt="Фрезеровка на ЧПУ в цехе FREZOREZ, Москва" loading="eager" />
       </div>
     </div>
   </section>
@@ -149,7 +175,7 @@ const steps = [
         ))}
       </div>
       <div class="hub-row">
-        <a href="/frezerovka-chpy" class="hub-link">
+        <a href="/frezerovka-chpy/" class="hub-link">
           Все материалы и подвиды фрезеровки <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -161,26 +187,24 @@ const steps = [
     <div class="container">
       <div class="section-head">
         <div class="eyebrow">Примеры работ</div>
-        <h2>Примеры выполненных работ</h2>
+        <h2>Реализованные проекты</h2>
       </div>
-      <div class="cases">
-        {cases.map((c, i) => (
-          <div class={`case${i % 2 === 1 ? ' case-flip' : ''}`}>
-            <div class="case-photo">
-              <img src={c.img} alt={c.title} loading="lazy" />
+      <div class="grid grid-3 projects">
+        {cases.map((c) => (
+          <a href={c.href} class="card card-link project-card">
+            <div class="project-photo">
+              <img src={c.img} alt={c.title} loading="lazy" decoding="async" />
             </div>
-            <div class="case-body">
+            <div class="project-body">
               <div class="eyebrow">{c.eyebrow}</div>
-              <h3 class="case-title">{c.title}</h3>
-              <p class="case-text">{c.text}</p>
+              <h3 class="project-title">{c.title}</h3>
+              <p class="project-text">{c.text}</p>
               <div class="case-tags">
                 {c.tags.map((t) => <span class="badge">{t}</span>)}
               </div>
-              <a href={c.href} class="case-link">
-                Подробнее <span aria-hidden="true">→</span>
-              </a>
+              <span class="project-link">Подробнее <span aria-hidden="true">→</span></span>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
@@ -226,7 +250,8 @@ const steps = [
         <h2>Есть чертёж или идея?</h2>
         <p class="lead">Пришлите — рассчитаем стоимость и сроки, подскажем по материалу и технологии.</p>
         <div class="cta-actions">
-          <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Telegram</a>
+          <a href={tgHref()} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Telegram</a>
+          {contacts.maxHref && <a href={contacts.maxHref} class="btn btn-secondary btn-lg" target="_blank" rel="noopener">MAX</a>}
           <a href={contacts.phoneHref} class="btn btn-secondary btn-lg">{contacts.phone}</a>
           <a href={contacts.emailHref} class="btn btn-ghost btn-lg">{contacts.email}</a>
         </div>
@@ -255,6 +280,10 @@ const steps = [
   .hero-h1 { max-width: 16ch; font-size: clamp(2.1rem, 8.5vw, 4rem); line-height: 1.07; overflow-wrap: break-word; }
   .hero-lead { margin-top: var(--space-6); max-width: 56ch; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-8); }
+
+  /* Подпись под кнопками: объясняет, зачем писать на почту (приложить чертёж),
+     чтобы оранжевая кнопка с адресом читалась как действие, а не как контакт для справки. */
+  .hero-mail { margin-top: var(--space-4); font-size: 15px; color: var(--text-secondary); }
 
   /* Фото героя показываем и на мобильном — иначе первый экран без единого изображения.
      На узких экранах ставим его ПЕРВЫМ (order), чтобы фото попадало в первый экран.
@@ -288,17 +317,20 @@ const steps = [
     display: flex; align-items: center; justify-content: center;
     background: #FFFFFF;
     border-radius: var(--radius-md);
-    padding: var(--space-3);
-    height: 72px;
+    padding: var(--space-3) var(--space-4);
+    height: 58px;
     transition: transform var(--duration-base) var(--ease-default),
                 box-shadow var(--duration-base) var(--ease-default);
   }
   .logo-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  /* Единая высота логотипа = визуальный порядок, несмотря на разные исходники */
   .logo-item img {
-    max-height: 100%; max-width: 100%;
+    max-height: 26px; max-width: 100%;
     width: auto; height: auto;
     object-fit: contain;
   }
+  @media (min-width: 640px)  { .logo-item { height: 64px; } .logo-item img { max-height: 30px; } }
+  @media (min-width: 1024px) { .logo-item { height: 72px; } .logo-item img { max-height: 34px; } }
 
   /* ─── НАПРАВЛЕНИЯ ──────────────────────────────────────────────────────── */
   .dir-card { padding: 0; overflow: hidden; }
@@ -361,6 +393,30 @@ const steps = [
     transition: color var(--duration-fast);
   }
   .case-link:hover { color: var(--accent-primary); }
+
+  /* ─── ПРОЕКТЫ (сетка карточек) ─────────────────────────────────────────── */
+  .projects { margin-top: var(--space-4); }
+  .project-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .project-photo { aspect-ratio: 16 / 10; overflow: hidden; }
+  .project-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+  .project-card:hover .project-photo img { transform: scale(1.05); }
+  .project-body { padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
+  .project-body .eyebrow { margin-bottom: 0; }
+  .project-title { font-size: 19px; line-height: 1.3; margin: 0; }
+  .project-text {
+    color: var(--text-secondary); font-size: 14px; line-height: 1.55; margin: 0;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .project-body .case-tags { margin-top: auto; padding-top: var(--space-1); }
+  .project-link {
+    display: inline-flex; align-items: center; gap: var(--space-1);
+    font-size: 14px; font-weight: 500; color: var(--text-tertiary);
+    transition: color var(--duration-fast);
+  }
+  .project-card:hover .project-link { color: var(--accent-primary); }
 
   /* ─── ПРОЦЕСС РАБОТЫ ───────────────────────────────────────────────────── */
   .steps {

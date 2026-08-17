@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site } from '../data/site.js';
+import { site, tgHref } from '../data/site.js';
 const { contacts } = site;
 
 const models = [
@@ -104,9 +104,10 @@ const faqs = [
           на собственном цеху.
         </p>
         <div class="hero-actions">
-          <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+          <a href={tgHref('shezlongi-iz-dereva')} class="btn btn-primary btn-lg" target="_blank" rel="noopener">
             Запросить расчёт по партии
           </a>
+          {contacts.maxHref && <a href={contacts.maxHref} class="btn btn-secondary btn-lg" target="_blank" rel="noopener">MAX</a>}
           <a href={contacts.phoneHref} class="btn btn-secondary btn-lg">{contacts.phone}</a>
         </div>
         <div class="hero-trust">
@@ -208,8 +209,8 @@ const faqs = [
           </li>
         </ol>
         <div class="brand-links">
-          <a href="/lazernaja-rezka" class="inline-link">О лазерной гравировке →</a>
-          <a href="/frezerovka-chpy" class="inline-link">ЧПУ-производство →</a>
+          <a href="/lazernaja-rezka/" class="inline-link">О лазерной гравировке →</a>
+          <a href="/frezerovka-chpy/" class="inline-link">ЧПУ-производство →</a>
         </div>
       </div>
       <div class="brand-ph">
@@ -378,9 +379,10 @@ const faqs = [
         Вернёмся с ценой и сроком.
       </p>
       <div class="cta-actions">
-        <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+        <a href={tgHref('shezlongi-iz-dereva')} class="btn btn-primary btn-lg" target="_blank" rel="noopener">
           Написать в Telegram
         </a>
+        {contacts.maxHref && <a href={contacts.maxHref} class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Написать в MAX</a>}
         <a href="https://wa.me/79255560166" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">
           WhatsApp
         </a>
@@ -394,7 +396,7 @@ const faqs = [
     <div class="container">
       <div class="eyebrow related-label">Смотрите также</div>
       <div class="related-grid">
-        <a href="/mebel-dlya-meropriyatij" class="rel-link">
+        <a href="/mebel-dlya-meropriyatij/" class="rel-link">
           <span>Мебель и оформление ивентов</span>
           <em>→</em>
         </a>

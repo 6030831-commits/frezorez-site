@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { pages } from '../data/pages.js';
-import { site } from '../data/site.js';
+import { site, slashed, tgHref } from '../data/site.js';
 
 export function getStaticPaths() {
   return Object.entries(pages).map(([slug, data]) => ({
@@ -11,8 +11,9 @@ export function getStaticPaths() {
 }
 
 const { data } = Astro.props;
-const path = '/' + Astro.params.slug;              // без слэша — для матчинга nav
-const slashed = (p) => (p === '/' ? '/' : p.replace(/\/$/, '') + '/'); // канон. вид со слэшем
+const slug = Astro.params.slug;                    // он же уезжает боту в /start
+const path = '/' + slug;                           // без слэша — для матчинга nav
+// slashed() импортирован из site.js — один канонизатор путей на весь сайт
 
 // Хлебные крошки: Главная → (родитель из nav) → текущая.
 // Матчинг родителя — по бесслэшевому href (как в site.nav), а URL в разметке — со слэшем.
@@ -56,12 +57,59 @@ const pageSchema = faqSchema ? [serviceSchema, faqSchema] : [serviceSchema];
         {data.todo && <span class="badge todo-badge">черновик — обогащается</span>}
       </div>
 
+      {data.heroGallery?.length && (
+        <div class="hero-gallery">
+          {data.heroGallery.map((g, idx) => (
+            <figure class={`hg-shot${idx === 0 ? ' hg-feature' : ''}`}>
+              <picture>
+                <source srcset={g.webp} type="image/webp" />
+                <img src={g.jpg} alt={g.alt} loading={idx < 3 ? 'eager' : 'lazy'} decoding="async" />
+              </picture>
+            </figure>
+          ))}
+        </div>
+      )}
+
       <div class="prose">
         {data.blocks?.map((block) => {
           if (block.type === 'h2') return <h2>{block.text}</h2>;
           if (block.type === 'h3') return <h3>{block.text}</h3>;
           if (block.type === 'ul') return <ul>{block.items.map((i) => <li>{i}</li>)}</ul>;
           if (block.type === 'links') return <ul class="link-list">{block.items.map((i) => <li><a href={i.href}>{i.label}</a></li>)}</ul>;
+          if (block.type === 'figure') return (
+            <figure class={`prose-fig${block.wide ? ' prose-fig-wide' : ''}`}>
+              <picture>
+                <source srcset={block.webp} type="image/webp" />
+                <img src={block.jpg} alt={block.alt} loading="lazy" decoding="async" />
+              </picture>
+              {block.caption && <figcaption>{block.caption}</figcaption>}
+            </figure>
+          );
+          if (block.type === 'figpair') return (
+            <div class="prose-figpair">
+              {block.items.map((g) => (
+                <figure>
+                  <picture>
+                    <source srcset={g.webp} type="image/webp" />
+                    <img src={g.jpg} alt={g.alt} loading="lazy" decoding="async" />
+                  </picture>
+                </figure>
+              ))}
+            </div>
+          );
+          if (block.type === 'gallery') return (
+            <div class="work-gallery">
+              {block.items.map((g) => (
+                <figure class="work-shot">
+                  <picture>
+                    <source srcset={g.webp} type="image/webp" />
+                    <img src={g.jpg} alt={g.alt} loading="lazy" />
+                  </picture>
+                  {g.caption && <figcaption>{g.caption}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          );
           return <p>{block.text}</p>;
         })}
       </div>
@@ -84,7 +132,8 @@ const pageSchema = faqSchema ? [serviceSchema, faqSchema] : [serviceSchema];
         <h3>Обсудить заказ</h3>
         <p>Пришлите чертёж или опишите задачу — рассчитаем и подскажем по материалу.</p>
         <div class="page-cta-actions">
-          <a href="https://t.me/frezorezwood" class="btn btn-primary" target="_blank" rel="noopener">Написать в Telegram</a>
+          <a href={tgHref(slug)} class="btn btn-primary" target="_blank" rel="noopener">Написать в Telegram</a>
+          {site.contacts.maxHref && <a href={site.contacts.maxHref} class="btn btn-secondary" target="_blank" rel="noopener">Написать в MAX</a>}
           <a href="tel:+79255560166" class="btn btn-secondary">+7 925 556-01-66</a>
         </div>
       </div>
@@ -93,12 +142,92 @@ const pageSchema = faqSchema ? [serviceSchema, faqSchema] : [serviceSchema];
 </Base>
 
 <style>
-  .page-head { margin-bottom: var(--space-12); }
+  .page-head { margin-bottom: var(--space-8); }
   .page-lead { margin-top: var(--space-4); max-width: 70ch; }
+
+  /* Hero-мозаика работ: крупный «фичер» + асимметричные плитки, editorial-стиль */
+  .hero-gallery {
+    margin: 0 0 var(--space-16);
+    display: grid;
+    gap: var(--space-2);
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 42vw;
+  }
+  .hg-shot {
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-secondary);
+  }
+  .hg-shot img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform var(--duration-slow, 600ms) var(--ease-out, ease);
+  }
+  .hg-shot:hover img { transform: scale(1.045); }
+  /* mobile: фичер на всю ширину сверху, ниже блок 2×2 из четырёх малых */
+  .hg-feature { grid-column: span 2; }
+
+  @media (min-width: 720px) {
+    /* 4 колонки × 2 ряда: фичер 2×2 слева, блок 2×2 из четырёх малых справа */
+    .hero-gallery { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 190px; gap: var(--space-3); }
+    .hg-feature { grid-column: span 2; grid-row: span 2; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hg-shot img { transition: none; }
+    .hg-shot:hover img { transform: none; }
+  }
+
+  /* Фото, разнесённые по тексту (figure / пара) */
+  .prose-fig { margin: var(--space-10) 0; }
+  .prose-fig img {
+    width: 100%; display: block;
+    aspect-ratio: 3 / 2; object-fit: cover;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+  }
+  .prose-fig-wide img { aspect-ratio: 16 / 9; }
+  .prose-fig figcaption { margin-top: var(--space-2); font-size: 13px; color: var(--text-tertiary); }
+
+  .prose-figpair {
+    margin: var(--space-10) 0;
+    display: grid; grid-template-columns: 1fr; gap: var(--space-3);
+  }
+  .prose-figpair figure { margin: 0; }
+  .prose-figpair img {
+    width: 100%; display: block;
+    aspect-ratio: 3 / 2; object-fit: cover;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+  }
+  @media (min-width: 640px) { .prose-figpair { grid-template-columns: 1fr 1fr; } }
   .todo-badge { margin-top: var(--space-4); background: var(--accent-subtle); color: var(--warning); }
   .page-cta { margin-top: var(--space-16); max-width: 720px; }
   .page-cta h3 { margin-bottom: var(--space-2); }
   .page-cta-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+
+  /* Галерея работ */
+  .work-gallery {
+    margin-top: var(--space-8);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+  .work-shot { margin: 0; }
+  .work-shot img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    display: block;
+  }
+  .work-shot figcaption {
+    margin-top: var(--space-2);
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
 
   /* FAQ */
   .faq { margin-top: var(--space-16); max-width: 760px; }

@@ -1,5 +1,5 @@
 ---
-import { site } from '../data/site.js';
+import { site, slashed } from '../data/site.js';
 const { contacts, delivery, nav } = site;
 const year = new Date().getFullYear();
 ---
@@ -30,7 +30,7 @@ const year = new Date().getFullYear();
     <div class="footer-col">
       <div class="eyebrow">Разделы</div>
       {nav.map((item) => (
-        <a href={item.href} class="footer-link">{item.label}</a>
+        <a href={slashed(item.href)} class="footer-link">{item.label}</a>
       ))}
     </div>
   </div>

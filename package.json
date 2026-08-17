@@ -11,5 +11,8 @@
   },
   "dependencies": {
     "astro": "^4.16.18"
+  },
+  "devDependencies": {
+    "basic-ftp": "^6.2.0"
   }
 }

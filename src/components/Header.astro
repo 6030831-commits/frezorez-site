@@ -1,5 +1,5 @@
 ---
-import { site } from '../data/site.js';
+import { site, slashed, tgHref } from '../data/site.js';
 const { contacts, nav } = site;
 ---
 
@@ -10,11 +10,11 @@ const { contacts, nav } = site;
     <nav class="nav" aria-label="Основная навигация">
       {nav.map((item) => (
         <div class="nav-item">
-          <a href={item.href} class="nav-link">{item.label}</a>
+          <a href={slashed(item.href)} class="nav-link">{item.label}</a>
           {item.children && (
             <div class="nav-dropdown">
               {item.children.map((child) => (
-                <a href={child.href} class="nav-dropdown-link">{child.label}</a>
+                <a href={slashed(child.href)} class="nav-dropdown-link">{child.label}</a>
               ))}
             </div>
           )}
@@ -22,7 +22,20 @@ const { contacts, nav } = site;
       ))}
     </nav>
 
-    <a href={contacts.phoneHref} class="btn btn-primary header-cta">{contacts.phone}</a>
+    <div class="header-actions">
+      <a href={contacts.phoneHref} class="btn btn-primary header-cta">{contacts.phone}</a>
+      <a
+        href={contacts.emailHref}
+        class="btn btn-primary header-mail"
+        title={contacts.email}
+        aria-label={`Написать на почту ${contacts.email}`}
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="m2 7 10 6 10-6" />
+        </svg>
+      </a>
+    </div>
 
     <button class="nav-toggle" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
@@ -35,11 +48,11 @@ const { contacts, nav } = site;
     <nav class="mobile-nav" aria-label="Мобильная навигация">
       {nav.map((item) => (
         <div class="m-group">
-          <a href={item.href} class="m-link">{item.label}</a>
+          <a href={slashed(item.href)} class="m-link">{item.label}</a>
           {item.children && (
             <div class="m-children">
               {item.children.map((child) => (
-                <a href={child.href} class="m-child">{child.label}</a>
+                <a href={slashed(child.href)} class="m-child">{child.label}</a>
               ))}
             </div>
           )}
@@ -47,8 +60,10 @@ const { contacts, nav } = site;
       ))}
     </nav>
     <div class="mobile-cta">
-      <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Написать в Telegram</a>
+      <a href={tgHref()} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Написать в Telegram</a>
+      {contacts.maxHref && <a href={contacts.maxHref} class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Написать в MAX</a>}
       <a href={contacts.phoneHref} class="btn btn-secondary btn-lg">{contacts.phone}</a>
+      <a href={contacts.emailHref} class="btn btn-secondary btn-lg">{contacts.email}</a>
     </div>
   </div>
 
@@ -72,11 +87,11 @@ const { contacts, nav } = site;
   }
 
   /* --- Десктоп-навигация --- */
-  .nav { display: none; gap: var(--space-6); align-items: center; }
+  .nav { display: none; gap: var(--space-5); align-items: center; }
   .nav-item { position: relative; }
   .nav-link {
     font-size: 14px; font-weight: 500; color: var(--text-secondary);
-    padding-block: 8px;
+    padding-block: 8px; white-space: nowrap;
     transition: color var(--duration-fast) var(--ease-default);
   }
   .nav-link:hover { color: var(--text-primary); }
@@ -97,7 +112,21 @@ const { contacts, nav } = site;
     transition: background var(--duration-fast), color var(--duration-fast);
   }
   .nav-dropdown-link:hover { background: var(--bg-tertiary); color: var(--text-primary); }
-  .header-cta { white-space: nowrap; }
+
+  /* --- Кнопки в правом верхнем углу --- */
+  /* Почта — квадратная иконка без подписи: меню при 1200 px занимает почти весь
+     контейнер, и на текстовую подпись места нет (проверено замером — было бы
+     перекрытие пункта «Контакты»). Адрес отдаётся через title и aria-label. */
+  /* margin-left:auto прижимает кнопки вправо: на мобильном меню скрыто, и без этого
+     space-between развешивал конверт по центру шапки, а не рядом с бургером.
+     На десктопе видимой разницы нет — там свободного места и так почти не остаётся. */
+  .header-actions {
+    display: flex; align-items: center; gap: var(--space-2);
+    flex-shrink: 0; margin-left: auto;
+  }
+  .header-cta, .header-mail { white-space: nowrap; }
+  .header-mail { padding: 10px; }
+  .header-mail svg { width: 18px; height: 18px; flex-shrink: 0; }
 
   /* --- Бургер --- */
   .nav-toggle {
@@ -128,21 +157,29 @@ const { contacts, nav } = site;
   .mobile-menu.open { transform: translateX(0); visibility: visible; }
   .m-group { border-bottom: 1px solid var(--border-subtle); padding: var(--space-2) 0; }
   .m-link {
-    display: block; font-family: var(--font-display); font-weight: 800;
-    font-size: 20px; color: var(--text-primary); padding: var(--space-2) 0;
+    display: block; font-weight: 600;
+    font-size: 17px; color: var(--text-primary); padding: var(--space-2) 0;
+    letter-spacing: 0;
   }
   .m-children { display: flex; flex-direction: column; padding: 0 0 var(--space-2); }
-  .m-child { font-size: 15px; color: var(--text-secondary); padding: 9px 0 9px var(--space-4); }
+  .m-child { font-size: 15px; font-weight: 400; color: var(--text-secondary); padding: 9px 0 9px var(--space-4); }
   .m-child:hover, .m-child:active { color: var(--accent-primary); }
   .mobile-cta { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-8); }
 
   /* --- Брейкпойнты --- */
   @media (max-width: 639px) { .header-cta { display: none; } }
-  @media (min-width: 640px) and (max-width: 1023px) {
+  @media (min-width: 640px) and (max-width: 1199px) {
     .header-cta { padding: 10px 16px; font-size: 13px; }
   }
-  @media (min-width: 1024px) {
-    .nav { display: flex; }
+  /* На десктопе логотип, меню и кнопки делят 1104 px контейнера. До этой правки шапка
+     переполнялась на 17 px даже с одной кнопкой телефона, поэтому меню ужато: шрифт
+     13 px вместо 14 и зазор 12 px вместо 20 — это высвобождает ~145 px.
+     min-width у меню НЕ обнулять: значение auto не даёт ему сжаться уже содержимого,
+     иначе пункты вылезают из своего блока и кнопка телефона наезжает на «Контакты». */
+  @media (min-width: 1200px) {
+    .nav { display: flex; gap: 12px; }
+    .nav-link { font-size: 13px; }
+    .header-cta { padding: 10px 16px; font-size: 13px; }
     .nav-toggle, .mobile-menu { display: none; }
   }
 </style>

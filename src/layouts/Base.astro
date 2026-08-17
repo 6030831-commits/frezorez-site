@@ -1,5 +1,5 @@
 ---
-import { site } from '../data/site.js';
+import { site, slashed } from '../data/site.js';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -29,7 +29,8 @@ const jsonLdGraph = [
     '@id': orgId,
     name: site.name,
     url: site.url,
-    logo: new URL('/assets/img/logo.png', site.url).href,
+    // Чёрная версия: поисковики показывают логотип на белом фоне, белая там пропала бы.
+    logo: new URL('/assets/img/logo-frezorez-black.png', site.url).href,
     image: ogImageUrl,
     telephone: site.contacts.phone,
     email: site.contacts.email,
@@ -61,7 +62,8 @@ if (breadcrumbs?.length) {
       '@type': 'ListItem',
       position: i + 1,
       name: b.name,
-      item: new URL(b.url, site.url).href,
+      // Слэш обязателен: item должен совпадать с canonical (200), а не с 301-редиректом.
+      item: new URL(slashed(b.url), site.url).href,
     })),
   });
 }
@@ -74,7 +76,12 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': json
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Фавикон из эмблемы логотипа: белый пильный диск на фирменном оранжевом.
+         Оранжевая подложка нужна, чтобы значок был виден и на светлой, и на тёмной
+         вкладке — белый диск на прозрачном фоне пропал бы на светлой теме. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <title>{title}</title>
     <meta name="description" content={description} />

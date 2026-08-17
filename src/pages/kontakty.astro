@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site } from '../data/site.js';
+import { site, tgHref } from '../data/site.js';
 const { contacts } = site;
 ---
 
@@ -56,7 +56,8 @@ const { contacts } = site;
 
           <!-- CTA -->
           <div class="cta-row">
-            <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Написать в Telegram</a>
+            <a href={tgHref()} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Написать в Telegram</a>
+            {contacts.maxHref && <a href={contacts.maxHref} class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Написать в MAX</a>}
             <a href={contacts.phoneHref} class="btn btn-secondary btn-lg">{contacts.phone}</a>
           </div>
 

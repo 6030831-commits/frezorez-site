@@ -90,6 +90,22 @@ body {
   overflow-x: clip; /* страховка от горизонтального скролла на мобильном; не ломает sticky */
 }
 
+/* --- Логотип водяным знаком на фоне всего сайта ---
+   Фон body по правилам CSS уходит на холст страницы, а сам блок body остаётся без
+   заливки — поэтому ::before с z-index:-1 ложится ПОВЕРХ фонового цвета, но ПОД весь
+   контент. position:fixed держит знак по центру экрана при прокрутке.
+   Прозрачность держим низкой: непрозрачные карточки и текст должны читаться как раньше. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url('/assets/img/logo-frezorez-white.png') no-repeat center center;
+  background-size: min(78vw, 78vh, 920px);
+  opacity: 0.05;
+}
+
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }

@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site } from '../data/site.js';
+import { site, tgHref } from '../data/site.js';
 const { contacts } = site;
 
 const workshops = [
@@ -22,17 +22,7 @@ const workshops = [
   },
 ];
 
-const partners = [
-  { name: 'Норникель',     src: '/content/partners/logo-ss-ru.jpg' },
-  { name: 'АндерСон',      src: '/content/partners/anderson.jpg' },
-  { name: 'Азбука Вкуса',  src: '/content/partners/azbyka.png' },
-  { name: 'ВКонтакте',     src: '/content/partners/vk.jpg' },
-  { name: 'ВкусВилл',      src: '/content/partners/vkus.jpg' },
-  { name: 'Swarovski',     src: '/content/partners/Swarovski-Logo.jpg' },
-  { name: 'Росгвардия',    src: '/content/partners/rosgvard-logo-1.png' },
-  { name: 'ОНФ',           src: '/content/partners/Onf-logo.svg.png' },
-  { name: 'Max Mara',      src: '/content/partners/Max-Mara-logo.jpg' },
-];
+const partners = site.clientLogos;
 ---
 
 <Base
@@ -110,7 +100,8 @@ const partners = [
         <h2>Есть задача?</h2>
         <p class="lead">Пришлите чертёж или опишите идею — рассчитаем стоимость и сроки, подскажем по материалу и технологии.</p>
         <div class="cta-actions">
-          <a href="https://t.me/frezorezwood" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Telegram</a>
+          <a href={tgHref()} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Telegram</a>
+          {contacts.maxHref && <a href={contacts.maxHref} class="btn btn-secondary btn-lg" target="_blank" rel="noopener">MAX</a>}
           <a href={contacts.phoneHref} class="btn btn-secondary btn-lg">{contacts.phone}</a>
         </div>
       </div>
