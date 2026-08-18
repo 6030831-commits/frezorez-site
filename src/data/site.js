@@ -41,8 +41,10 @@ export const site = {
   contacts: {
     phone: '+7 925 556-01-66',
     phoneHref: 'tel:+79255560166',
-    email: 'info@frezorez.ru',
-    emailHref: 'mailto:info@frezorez.ru',
+    // Ящик на своём хостинге (не Яндекс): его читает и отвечает бот из FREZOREZ_ALL.
+    // info@frezorez.ru остаётся живым на Яндексе как архив — MX корня не трогали.
+    email: 'zakaz@mail.frezorez.ru',
+    emailHref: 'mailto:zakaz@mail.frezorez.ru',
     address: 'Москва, ул. Буракова, 6 стр. 2',
     metro: [
       'Семёновская', 'Электрозаводская', 'Соколиная гора',

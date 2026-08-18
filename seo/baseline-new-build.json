@@ -120,7 +120,8 @@
       "LocalBusiness",
       "WebSite",
       "BreadcrumbList",
-      "Service"
+      "Service",
+      "FAQPage"
     ]
   },
   "/frezerovka-kompozita/": {
@@ -150,7 +151,8 @@
       "LocalBusiness",
       "WebSite",
       "BreadcrumbList",
-      "Service"
+      "Service",
+      "FAQPage"
     ]
   },
   "/frezerovka-pvh/": {
@@ -198,7 +200,7 @@
   },
   "/kontakty/": {
     "title": "Контакты — FREZOREZ.RU, Москва, ул. Буракова 6с2",
-    "description": "Контакты FREZOREZ: +7 925 556-01-66, info@frezorez.ru, Москва ул. Буракова 6 стр. 2. Telegram, WhatsApp, ВКонтакте.",
+    "description": "Контакты FREZOREZ: +7 925 556-01-66, zakaz@mail.frezorez.ru, Москва ул. Буракова 6 стр. 2. Telegram, WhatsApp, ВКонтакте.",
     "canonical": "https://www.frezorez.ru/kontakty/",
     "robots": "index,follow",
     "h1": [

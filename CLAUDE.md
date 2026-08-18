@@ -22,7 +22,7 @@ Astro 4. `Base.astro` (SEO-мета / canonical / OG / Яндекс-верифи
 
 ## Конверсия — без форм и ПДн
 Нет форм / БД → нет 152-ФЗ и локализации. Продажи юрлицам по счёту. Конверсия — только прямые контакты:
-Telegram `@frezorez_bot` · WhatsApp/звонок `+7 925 556-01-66` · `info@frezorez.ru` · VK `public157944963` · Inst `@frezorez`.
+Telegram `@frezorez_bot` · WhatsApp/звонок `+7 925 556-01-66` · `zakaz@mail.frezorez.ru` · VK `public157944963` · Inst `@frezorez`.
 Аналитика — только Яндекс Метрика (счётчик `53352265`).
 
 **Telegram-ссылки только через `tgHref(slug)` из `data/site.js`** — руками `https://t.me/...` не писать.

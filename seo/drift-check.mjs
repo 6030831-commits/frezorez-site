@@ -1,5 +1,8 @@
 // Пост-деплойный контроль SEO-дрейфа. Без внешних зависимостей (Node 18+ fetch).
-// Запуск ПОСЛЕ переезда: node seo/drift-check.mjs [https://frezorez.ru]
+// Запуск ПОСЛЕ переезда: node seo/drift-check.mjs [https://www.frezorez.ru]
+// Умолчание — www: с 17.08.2026 включён редирект frezorez.ru → www.frezorez.ru,
+// и проверка без www давала 301 на всех 24 URL, то есть 24 ложных CRITICAL.
+// Главное зеркало = www (историческая индексация Яндекса), там же canonical.
 // Сравнивает живые страницы с target-состоянием seo/baseline-new-build.json.
 // Коды: CRITICAL — вероятная потеря трафика (чинить сразу); WARNING — проверить.
 import { readFileSync } from 'node:fs';
@@ -7,7 +10,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const ORIGIN = (process.argv[2] || 'https://frezorez.ru').replace(/\/$/, '');
+const ORIGIN = (process.argv[2] || 'https://www.frezorez.ru').replace(/\/$/, '');
 const baseline = JSON.parse(readFileSync(join(HERE, 'baseline-new-build.json'), 'utf8'));
 
 const findings = [];
