@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { pages } from '../data/pages.js';
 import { site, slashed, tgHref } from '../data/site.js';
+import { tiers, priceTable, terms, PRICE_URL } from '../data/prices.js';
 
 export function getStaticPaths() {
   return Object.entries(pages).map(([slug, data]) => ({
@@ -22,6 +23,14 @@ const breadcrumbs = [{ name: 'Главная', url: '/' }];
 if (parent) breadcrumbs.push({ name: parent.label, url: slashed(parent.href) });
 breadcrumbs.push({ name: data.h1, url: slashed(path) });
 
+// Цены. Если слаг совпал с материалом из прайса — страница получает таблицу тарифа
+// автоматически. Цифры живут ТОЛЬКО в src/data/prices.js: правишь их там —
+// меняется и /ceny-na-frezerovky/, и этот блок на всех страницах материалов сразу.
+const priceBlock = priceTable.find((m) => m.href === path) || null;
+const priceMin = priceBlock
+  ? Math.min(...priceBlock.rows.map((r) => Math.min(...r.v)))
+  : null;
+
 // Service-схема услуги
 const serviceSchema = {
   '@type': 'Service',
@@ -31,6 +40,20 @@ const serviceSchema = {
   areaServed: { '@type': 'Country', name: 'Россия' },
   url: new URL(slashed(path), site.url).href,
   description: data.description,
+  ...(priceBlock && {
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'RUB',
+      price: priceMin,
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        priceCurrency: 'RUB',
+        price: priceMin,
+        unitText: 'погонный метр реза',
+      },
+      url: new URL(PRICE_URL, site.url).href,
+    },
+  }),
 };
 
 // FAQPage-схема (если у страницы есть блок вопросов) — расширенные сниппеты + AI-поиск
@@ -114,6 +137,42 @@ const pageSchema = faqSchema ? [serviceSchema, faqSchema] : [serviceSchema];
         })}
       </div>
 
+      {priceBlock && (
+        <section class="price-sec" id="ceny">
+          <h2>Сколько стоит</h2>
+          <p class="price-sub">
+            Считаем по погонному метру реза: складываем длины всех контуров и умножаем на тариф.
+            Материал в цену не входит, минимальный заказ — {terms.minOrder.toLocaleString('ru-RU')} ₽.
+          </p>
+
+          <div class="price-scroll">
+            <table class="ptab">
+              <thead>
+                <tr>
+                  <th scope="col" class="ptab-th">Толщина, мм</th>
+                  {tiers.map((t) => <th scope="col">{t.short}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {priceBlock.rows.map((r) => (
+                  <tr>
+                    <th scope="row" class="ptab-th">{r.t}</th>
+                    {r.v.map((p, i) => (
+                      <td class={i === 0 ? 'ptab-base' : ''}>{p}<span class="ptab-cur"> ₽</span></td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="price-legend">
+            Столбцы — метраж реза в одном заказе: {tiers.map((t) => t.full).join(' · ')}.
+            Срочно — надбавка от {terms.urgency}%, сложный контур — от {terms.complexity}%.
+          </p>
+          <a href={PRICE_URL} class="price-all">Весь прайс и условия →</a>
+        </section>
+      )}
+
       {data.faq?.length && (
         <section class="faq">
           <h2>Частые вопросы</h2>
@@ -144,6 +203,54 @@ const pageSchema = faqSchema ? [serviceSchema, faqSchema] : [serviceSchema];
 <style>
   .page-head { margin-bottom: var(--space-8); }
   .page-lead { margin-top: var(--space-4); max-width: 70ch; }
+
+  /* ─── Ценовой блок (только у страниц материалов из prices.js) ─────────── */
+  .price-sec { margin: var(--space-16) 0; scroll-margin-top: 88px; }
+  .price-sec h2 { margin-bottom: var(--space-3); }
+  .price-sub { color: var(--text-secondary); max-width: 70ch; margin-bottom: var(--space-6); }
+  .price-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+    -webkit-overflow-scrolling: touch;
+  }
+  .ptab {
+    width: 100%; min-width: 480px;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+  .ptab th, .ptab td {
+    padding: var(--space-3) var(--space-4);
+    text-align: right;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .ptab thead th {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .06em;
+    color: var(--text-tertiary); background: var(--bg-tertiary);
+    white-space: nowrap;
+  }
+  .ptab tbody tr:last-child th, .ptab tbody tr:last-child td { border-bottom: 0; }
+  .ptab tbody tr:hover th, .ptab tbody tr:hover td { background: var(--bg-tertiary); }
+  .ptab-th {
+    text-align: left !important; font-weight: 600;
+    color: var(--text-primary); white-space: nowrap;
+  }
+  .ptab tbody td {
+    font-family: var(--font-mono); font-size: 15px; color: var(--text-secondary);
+  }
+  .ptab tbody td.ptab-base { color: var(--text-primary); font-weight: 600; }
+  .ptab-cur { color: var(--text-tertiary); font-size: 12px; }
+  .price-legend {
+    font-size: 13px; color: var(--text-tertiary);
+    margin: var(--space-3) 0 var(--space-4); max-width: 70ch;
+  }
+  .price-all {
+    display: inline-block; font-weight: 600; color: var(--accent-primary);
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+  .price-all:hover { color: var(--accent-hover); }
 
   /* Hero-мозаика работ: крупный «фичер» + асимметричные плитки, editorial-стиль */
   .hero-gallery {

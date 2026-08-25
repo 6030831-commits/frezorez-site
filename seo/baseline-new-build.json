@@ -31,6 +31,22 @@
       "FAQPage"
     ]
   },
+  "/ceny-na-frezerovky/": {
+    "title": "Цены на фрезеровку ЧПУ в Москве — прайс за погонный метр | FREZOREZ",
+    "description": "Прайс на ЧПУ-фрезеровку: фанера, МДФ, ПВХ, акрил, дерево, композит. Цена за погонный метр реза со ступенями объёма. Минимальный заказ 5 000 ₽. 3D — от 1 500 ₽/час.",
+    "canonical": "https://www.frezorez.ru/ceny-na-frezerovky/",
+    "robots": "index,follow",
+    "h1": [
+      "Цены на фрезеровку ЧПУ"
+    ],
+    "schemaTypes": [
+      "LocalBusiness",
+      "WebSite",
+      "BreadcrumbList",
+      "FAQPage",
+      "OfferCatalog"
+    ]
+  },
   "/derevyannaya-posuda-dlya-barov-restoranov/": {
     "title": "Деревянная посуда для баров и ресторанов на заказ | FREZOREZ",
     "description": "Деревянная посуда для баров и ресторанов на заказ: доски для подачи, менажницы, винницы, органайзеры, таблички RESERVED. По вашим размерам, с гравировкой.",

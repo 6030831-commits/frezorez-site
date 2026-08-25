@@ -7,6 +7,8 @@ const base = `https://api.webmaster.yandex.net/v4/user/${userId}/hosts/${encodeU
 
 // Приоритет: сначала самые ценные (спрос/показы), потом остальные.
 const urls = [
+  // Страница цен — первая в очереди: новая, до 24.08.2026 этот URL отдавал 403.
+  '/ceny-na-frezerovky/',
   '/', '/3d-frezerovka/', '/frezerovka-chpy/', '/frezerovka-dereva/',
   '/frezerovka-fanery/', '/frezerovka-pvh/', '/frezerovka-acryl/', '/lazernaja-rezka/',
   '/frezerovka-mdf/', '/frezerovka-kompozita/', '/mebel-iz-fanery/',

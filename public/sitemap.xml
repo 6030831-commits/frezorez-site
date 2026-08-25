@@ -125,6 +125,15 @@
     <priority>0.5</priority>
   </url>
 
+  <!-- Цены. Новая страница 24.08.2026: до этого URL отдавал 403 (папка без index),
+       ссылки в навигации не было, а прайс лежал только битым xlsx. -->
+  <url>
+    <loc>https://www.frezorez.ru/ceny-na-frezerovky/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- NEW: P1 страницы -->
   <url>
     <loc>https://www.frezorez.ru/o-nas/</loc>

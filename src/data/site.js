@@ -99,6 +99,9 @@ export const site = {
       ],
     },
     { label: 'Ящики и кашпо', href: '/yaschiki-podiumy-kashpo' },
+    // Цены — отдельный пункт с 24.08.2026. До этого ссылки на прайс в навигации не было
+    // вообще, а сам URL /ceny-na-frezerovky/ отдавал 403 (папка в public/ без index-файла).
+    { label: 'Цены', href: '/ceny-na-frezerovky' },
     { label: 'Портфолио', href: '/portfolio' },
     { label: 'О нас', href: '/o-nas' },
     { label: 'Контакты', href: '/kontakty' },

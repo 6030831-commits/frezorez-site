@@ -1,0 +1,427 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, slashed, tgHref } from '../data/site.js';
+import { tiers, priceTable, terms, engraving } from '../data/prices.js';
+
+const rub = (n) => n.toLocaleString('ru-RU');
+
+const faq = [
+  {
+    q: 'Как считается стоимость фрезеровки?',
+    a: 'По длине реза. Складываем длины всех контуров детали в погонных метрах и умножаем на тариф — он зависит от материала, толщины листа и общего метража заказа. Стоимость материала считается отдельно.',
+  },
+  {
+    q: 'Почему цена за метр, а не за деталь или за лист?',
+    a: 'Потому что станок тратит время именно на рез. Ажурная деталь и сплошной квадрат одного габарита отличаются по метражу в десятки раз — по листу такую работу честно не посчитать. По погонному метру считает весь рынок ЧПУ-фрезеровки.',
+  },
+  {
+    q: 'Какой минимальный заказ?',
+    a: 'Минимальная сумма заказа — ' + rub(terms.minOrder) + ' ₽ без НДС. Заказы меньше этой суммы невыгодны из-за времени на подготовку макета и наладку станка.',
+  },
+  {
+    q: 'Входит ли материал в стоимость?',
+    a: 'Нет. В тарифе только работа станка. Материал считаем отдельно — можем закупить его сами или работать с вашим давальческим листом.',
+  },
+  {
+    q: 'Сколько стоит 3D-фрезеровка?',
+    a: '3D считается не метрами, а временем работы станка — от ' + rub(terms.hour3dFrom) + ' ₽ за час. Для ориентира: мебельные фасады со сложным рельефом обходятся от ' + rub(terms.facade3dFrom) + ' ₽ за м² вместе с материалом. Точная цена — по 3D-модели или эскизу.',
+  },
+  {
+    q: 'Можно ли сделать срочно?',
+    a: 'Да. Срочный заказ вне очереди — надбавка от ' + terms.urgency + '% к стоимости работы. Сложный контур с большим числом мелких элементов — от ' + terms.complexity + '%.',
+  },
+  {
+    q: 'Что если у меня нет чертежа?',
+    a: 'Пришлите эскиз, фото или размеры — отрисуем макет сами, доработка макета от ' + rub(terms.artworkFrom) + ' ₽. Готовые файлы принимаем в DXF, DWG, CDR, AI, а для 3D — в STL или моделью.',
+  },
+];
+
+const faqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+// Каталог тарифов: минимальная цена каждого материала как Offer.
+const offerSchema = {
+  '@type': 'OfferCatalog',
+  name: 'Цены на фрезеровку ЧПУ — FREZOREZ',
+  itemListElement: priceTable.map((m) => {
+    const min = Math.min(...m.rows.map((r) => Math.min(...r.v)));
+    return {
+      '@type': 'Offer',
+      name: 'Фрезеровка ЧПУ: ' + m.material,
+      url: new URL(slashed(m.href), site.url).href,
+      priceCurrency: 'RUB',
+      price: min,
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        priceCurrency: 'RUB',
+        price: min,
+        unitText: 'погонный метр реза',
+      },
+    };
+  }),
+};
+
+const metaDesc = 'Прайс на ЧПУ-фрезеровку: фанера, МДФ, ПВХ, акрил, дерево, композит. Цена за погонный метр реза со ступенями объёма. Минимальный заказ ' + rub(terms.minOrder) + ' ₽. 3D — от ' + rub(terms.hour3dFrom) + ' ₽/час.';
+---
+
+<Base
+  title="Цены на фрезеровку ЧПУ в Москве — прайс за погонный метр | FREZOREZ"
+  description={metaDesc}
+  breadcrumbs={[{ name: 'Главная', url: '/' }, { name: 'Цены', url: '/ceny-na-frezerovky' }]}
+  schema={[faqSchema, offerSchema]}
+>
+  <article class="section">
+    <div class="container">
+
+      <div class="page-head">
+        <div class="eyebrow">Прайс</div>
+        <h1>Цены на <span class="accent-text">фрезеровку ЧПУ</span></h1>
+        <p class="lead page-lead">
+          Считаем по погонному метру реза — как принято на рынке, без скрытых коэффициентов.
+          Ниже полный тариф по материалам и толщинам. Точную сумму называем по вашему чертежу.
+        </p>
+      </div>
+
+      <!-- ① Как считаем -->
+      <section class="how">
+        <h2 class="how-title">Как складывается цена</h2>
+        <div class="how-grid">
+          <div class="how-item">
+            <div class="how-num">01</div>
+            <h3>Погонный метр реза</h3>
+            <p>Складываем длины всех контуров детали. Ажурная решётка даёт десятки метров при том же габарите, что и сплошной щит, — поэтому считаем рез, а не площадь листа.</p>
+          </div>
+          <div class="how-item">
+            <div class="how-num">02</div>
+            <h3>Толщина и материал</h3>
+            <p>Чем толще лист, тем медленнее подача и больше проходов. Тариф на фанеру 6 мм и 40 мм отличается втрое — смотрите свою строку в таблице.</p>
+          </div>
+          <div class="how-item">
+            <div class="how-num">03</div>
+            <h3>Объём заказа</h3>
+            <p>Цена метра падает ступенями: до 500, до 1 000, до 3 000 и от 5 000 погонных метров. На больших тиражах разница доходит до 40–45%.</p>
+          </div>
+          <div class="how-item">
+            <div class="how-num">04</div>
+            <h3>Материал — отдельно</h3>
+            <p>В тарифе только работа станка. Лист закупаем мы или вы — работаем и с давальческим материалом.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ② Таблицы по материалам -->
+      <section class="tables">
+        <h2 class="tables-title">Тариф по материалам</h2>
+        <p class="tables-sub">₽ за погонный метр реза, без стоимости материала и без НДС.</p>
+
+        {priceTable.map((m) => (
+          <div class="mat" id={m.key}>
+            <div class="mat-head">
+              <h3 class="mat-name">{m.material}</h3>
+              <a href={slashed(m.href)} class="mat-link">Подробнее об услуге →</a>
+            </div>
+            <p class="mat-note">{m.note}</p>
+
+            <div class="table-scroll">
+              <table class="price-table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="th-thick">Толщина, мм</th>
+                    {tiers.map((t) => <th scope="col">{t.short}</th>)}
+                  </tr>
+                </thead>
+                <tbody>
+                  {m.rows.map((r) => (
+                    <tr>
+                      <th scope="row" class="th-thick">{r.t}</th>
+                      {r.v.map((price, i) => (
+                        <td class={i === 0 ? 'td-base' : ''}>
+                          {price}<span class="cur"> ₽</span>
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p class="table-legend">Столбцы — метраж реза в одном заказе: {tiers.map((t) => t.full).join(' · ')}.</p>
+          </div>
+        ))}
+      </section>
+
+      <!-- ③ Отдельные позиции -->
+      <section class="extra">
+        <h2>Считаются иначе</h2>
+        <div class="extra-grid">
+          <div class="card extra-card">
+            <div class="eyebrow">3D-фрезеровка</div>
+            <div class="extra-price">от {rub(terms.hour3dFrom)} ₽<span class="extra-unit">/час станка</span></div>
+            <p>Рельеф, панно, гербы, клише. Метрами такую работу не посчитать — считаем время. Мебельные фасады со сложным рельефом — от {rub(terms.facade3dFrom)} ₽/м² вместе с материалом.</p>
+            <a href={slashed('/3d-frezerovka')} class="extra-link">3D-фрезеровка →</a>
+          </div>
+          <div class="card extra-card">
+            <div class="eyebrow">Гравировка оргстекла</div>
+            <div class="extra-price">от {rub(engraving[0].from)} ₽<span class="extra-unit">/м²</span></div>
+            <ul class="extra-list">
+              {engraving.map((e) => (
+                <li>{e.name} — {rub(e.to)}–{rub(e.from)} ₽/м²</li>
+              ))}
+            </ul>
+            <p class="extra-fine">Цена падает с площадью — второе число для больших объёмов.</p>
+          </div>
+          <div class="card extra-card">
+            <div class="eyebrow">Лазерная резка</div>
+            <div class="extra-price">по чертежу</div>
+            <p>Металл, а также материалы, где нужен рез без механической нагрузки. Считаем по времени и толщине — пришлите файл, назовём сумму и срок.</p>
+            <a href={slashed('/lazernaja-rezka')} class="extra-link">Лазерная резка →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ④ Условия -->
+      <section class="terms">
+        <h2>Условия</h2>
+        <dl class="terms-list">
+          <div class="term">
+            <dt>Минимальный заказ</dt>
+            <dd>{rub(terms.minOrder)} ₽ без НДС</dd>
+          </div>
+          <div class="term">
+            <dt>Срочно, вне очереди</dt>
+            <dd>+{terms.urgency}% к стоимости работы</dd>
+          </div>
+          <div class="term">
+            <dt>Сложный контур</dt>
+            <dd>+{terms.complexity}%</dd>
+          </div>
+          <div class="term">
+            <dt>Доработка макета</dt>
+            <dd>от {rub(terms.artworkFrom)} ₽</dd>
+          </div>
+          <div class="term">
+            <dt>Материал</dt>
+            <dd>считается отдельно, принимаем давальческий</dd>
+          </div>
+          <div class="term">
+            <dt>Файлы</dt>
+            <dd>DXF, DWG, CDR, AI; для 3D — STL или модель</dd>
+          </div>
+        </dl>
+        <p class="terms-fine">
+          Цены в таблицах — ориентир для расчёта бюджета. Итоговую сумму называем после того,
+          как посмотрим чертёж: на неё влияют раскрой, количество деталей и требования к кромке.
+          Расчёт бесплатный.
+        </p>
+      </section>
+
+      <!-- ⑤ FAQ -->
+      <section class="faq">
+        <h2>Частые вопросы о цене</h2>
+        <div class="faq-list">
+          {faq.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- ⑥ CTA -->
+      <div class="page-cta card card-featured">
+        <h3>Посчитать ваш заказ</h3>
+        <p>Пришлите чертёж, DXF или просто фото с размерами — вернёмся с точной суммой и сроком. Бесплатно, обычно в тот же день.</p>
+        <div class="page-cta-actions">
+          <a href={tgHref('ceny-na-frezerovky')} class="btn btn-primary" target="_blank" rel="noopener">Написать в Telegram</a>
+          {site.contacts.maxHref && <a href={site.contacts.maxHref} class="btn btn-secondary" target="_blank" rel="noopener">Написать в MAX</a>}
+          <a href={site.contacts.phoneHref} class="btn btn-secondary">{site.contacts.phone}</a>
+          <a href={site.contacts.emailHref} class="btn btn-ghost">{site.contacts.email}</a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+</Base>
+
+<style>
+  .page-head { margin-bottom: var(--space-12); max-width: 820px; }
+  .page-head h1 { margin-block: var(--space-3) var(--space-4); }
+  .page-lead { color: var(--text-secondary); }
+
+  /* ─── ① Как считаем ─────────────────────────────────────────────────── */
+  .how { margin-bottom: var(--space-20); }
+  .how-title { margin-bottom: var(--space-8); }
+  .how-grid {
+    display: grid; gap: var(--space-6);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) { .how-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .how-grid { grid-template-columns: repeat(4, 1fr); } }
+  .how-item {
+    padding: var(--space-6);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+  }
+  .how-num {
+    font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+    color: var(--accent-primary); margin-bottom: var(--space-3);
+  }
+  .how-item h3 { font-size: 17px; margin-bottom: var(--space-2); }
+  .how-item p { font-size: 14px; color: var(--text-secondary); margin: 0; }
+
+  /* ─── ② Таблицы ─────────────────────────────────────────────────────── */
+  .tables { margin-bottom: var(--space-20); }
+  .tables-title { margin-bottom: var(--space-2); }
+  .tables-sub { color: var(--text-tertiary); font-size: 15px; margin-bottom: var(--space-10); }
+
+  .mat { margin-bottom: var(--space-12); scroll-margin-top: 88px; }
+  .mat-head {
+    display: flex; flex-wrap: wrap; align-items: baseline;
+    justify-content: space-between; gap: var(--space-3);
+    margin-bottom: var(--space-2);
+  }
+  .mat-name {
+    font-family: var(--font-display); font-size: 24px; font-weight: 800;
+    margin: 0;
+  }
+  .mat-link {
+    font-size: 14px; color: var(--accent-primary); white-space: nowrap;
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+  .mat-link:hover { color: var(--accent-hover); }
+  .mat-note { font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-5); }
+
+  /* Горизонтальный скролл только у таблицы — страница по X не едет */
+  .table-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+    -webkit-overflow-scrolling: touch;
+  }
+  .price-table {
+    width: 100%; min-width: 480px;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+  .price-table th, .price-table td {
+    padding: var(--space-3) var(--space-4);
+    text-align: right;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .price-table thead th {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .06em;
+    color: var(--text-tertiary);
+    background: var(--bg-tertiary);
+    white-space: nowrap;
+  }
+  .price-table tbody tr:last-child th,
+  .price-table tbody tr:last-child td { border-bottom: 0; }
+  .price-table tbody tr:hover td,
+  .price-table tbody tr:hover th { background: var(--bg-tertiary); }
+  .th-thick {
+    text-align: left !important;
+    font-weight: 600; color: var(--text-primary);
+    white-space: nowrap;
+  }
+  .price-table tbody td {
+    font-family: var(--font-mono); font-size: 15px;
+    color: var(--text-secondary);
+  }
+  .price-table tbody td.td-base {
+    color: var(--text-primary); font-weight: 600;
+  }
+  .cur { color: var(--text-tertiary); font-size: 12px; }
+  .table-legend {
+    font-size: 13px; color: var(--text-tertiary);
+    margin-top: var(--space-3);
+  }
+
+  /* ─── ③ Отдельные позиции ───────────────────────────────────────────── */
+  .extra { margin-bottom: var(--space-20); }
+  .extra h2 { margin-bottom: var(--space-8); }
+  .extra-grid {
+    display: grid; gap: var(--space-6); grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) { .extra-grid { grid-template-columns: repeat(3, 1fr); } }
+  .extra-card { display: flex; flex-direction: column; gap: var(--space-3); }
+  .extra-price {
+    font-family: var(--font-display); font-size: 28px; font-weight: 800;
+    color: var(--accent-primary); line-height: 1.1;
+  }
+  .extra-unit {
+    font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+    color: var(--text-tertiary); margin-left: var(--space-2);
+  }
+  .extra-card p { font-size: 14px; color: var(--text-secondary); margin: 0; }
+  .extra-list { margin: 0; padding-left: var(--space-5); font-size: 14px; color: var(--text-secondary); }
+  .extra-list li { margin-bottom: var(--space-1); }
+  .extra-fine { font-size: 13px !important; color: var(--text-tertiary) !important; }
+  .extra-link {
+    margin-top: auto; font-size: 14px; color: var(--accent-primary);
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+  .extra-link:hover { color: var(--accent-hover); }
+
+  /* ─── ④ Условия ─────────────────────────────────────────────────────── */
+  .terms { margin-bottom: var(--space-20); }
+  .terms h2 { margin-bottom: var(--space-8); }
+  .terms-list {
+    display: grid; gap: 0; margin: 0 0 var(--space-6);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .term {
+    display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4);
+    justify-content: space-between; align-items: baseline;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-secondary);
+  }
+  .term:last-child { border-bottom: 0; }
+  .term dt { color: var(--text-secondary); font-size: 15px; }
+  .term dd {
+    margin: 0; font-weight: 600; color: var(--text-primary);
+    font-size: 15px; text-align: right;
+  }
+  .terms-fine { font-size: 14px; color: var(--text-tertiary); max-width: 760px; }
+
+  /* ─── ⑤ FAQ ─────────────────────────────────────────────────────────── */
+  .faq { margin-bottom: var(--space-16); }
+  .faq h2 { margin-bottom: var(--space-6); }
+  .faq-list { display: flex; flex-direction: column; gap: var(--space-3); max-width: 900px; }
+  .faq-item {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    padding: var(--space-4) var(--space-5);
+  }
+  .faq-item summary {
+    cursor: pointer; font-weight: 600; color: var(--text-primary);
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+'; float: right; color: var(--accent-primary);
+    font-family: var(--font-mono); font-weight: 400;
+  }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p {
+    margin: var(--space-3) 0 0; color: var(--text-secondary); font-size: 15px;
+  }
+
+  /* ─── ⑥ CTA ─────────────────────────────────────────────────────────── */
+  .page-cta { padding: var(--space-8); }
+  .page-cta h3 { margin-bottom: var(--space-2); }
+  .page-cta p { color: var(--text-secondary); margin-bottom: var(--space-6); }
+  .page-cta-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+</style>
